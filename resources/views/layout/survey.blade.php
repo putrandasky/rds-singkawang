@@ -5,15 +5,15 @@
   <title>Real Demand Survey - Perencanaan Pembangunan Bandara Singkawang</title>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta charset="utf-8">
-  <meta name="author" content="Radityo Putra Paripurna | alterfingers.com">
+  <meta name="author" content="Radityo Putra Paripurna ">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="description" content="Real Demand Survey - Perencanaan Pembangunan Bandara Singkawang">
+  <meta name="description" content="Yuk, ikutan survei permintaan calon penumpang Bandar Udara Singkawang dan raih kesempatan untuk memenangkan berbagai hadiah! ">
   <meta name="keywords" content="Real Demand Survey - Perencanaan Pembangunan Bandara Singkawang">
   <meta property="og:image" content="{{ asset('favicon.png') }}">
 
   <meta property="og:title" content="Real Demand Survey - Perencanaan Pembangunan Bandara Singkawang" />
   <meta property="og:url" content="https://rds-singkawang.ptpii.co.id" />
-  <meta property="og:description" content="Survei Preferensi Kebijakan Parkir, Layanan Feeder, Jalur Sepeda, dan Jalur Pejalan Kaki terhadap Layanan MRT di DKI Jakarta">
+  <meta property="og:description" content="Yuk, ikutan survei permintaan calon penumpang Bandar Udara Singkawang dan raih kesempatan untuk memenangkan berbagai hadiah! ">
   <link type="image/png" href="{{ asset('favicon.png') }}" rel="icon">
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
