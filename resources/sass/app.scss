@@ -1,8 +1,175 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// BootstrapVue
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+//remixicon
+@import 'remixicon/fonts/remixicon.css';
+
+//vue-slider-component
+@import '~vue-slider-component/lib/theme/default.scss';
+
+.progress {
+  background-color: #ffffff;
+}
+
+.full-bg {
+
+  min-height: 100vh;
+  height: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &.bg-home {
+    background-image: rgb(0, 0, 0),
+      url(/img/bg-home.jpg);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%),
+      url(/img/bg-home.jpg);
+    background-image: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%), url(/img/bg-home.jpg);
+    background-image: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%), url(/img/bg-home.jpg);
+  }
+
+  &.bg-end {
+    background-image: rgb(0, 0, 0),
+      url(/img/bg-end.jpg);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%),
+      url(/img/bg-end.jpg);
+    background-image: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%), url(/img/bg-home.jpg);
+    background-image: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%), url(/img/bg-home.jpg);
+  }
+
+
+
+}
+
+.btn-group-toggle>.btn,
+.btn-group-toggle>.btn-group>.btn {
+  margin-bottom: 0.5rem !important;
+}
+
+// .btn-outline-warning,
+// .btn-outline-warning:not(:disabled):not(.disabled):active,
+// .btn-outline-warning:not(:disabled):not(.disabled).active,
+// .show>.btn-outline-warning.dropdown-toggle {
+//   //   color: #F4F4F4 !important;
+//   border: 1px solid rgba(0, 0, 0, 0.125) !important;
+// }
+
+
+// .btn-outline-warning:not(:disabled):not(.disabled):active {
+//   color: $warning !important;
+// }
+
+.btn-group-vertical,
+.btn-group,
+.btn-group-toggle>.btn {
+  border-top-left-radius: 0.25rem !important;
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important;
+
+
+}
+
+.btn-group-toggle {
+  >label {
+    &.btn-outline-warning {
+      color: $dark;
+      background-color: #f5f5f5;
+
+      &:hover {
+        background-color: $warning !important;
+      }
+
+      &.active {
+        background-color: $warning !important;
+        font-weight: bold;
+      }
+    }
+
+    &.btn {
+      border-color: #f5f5f5;
+
+    }
+  }
+
+}
+
+.btn-custom {
+  &.btn-outline-warning {
+    color: $dark;
+    background-color: #f5f5f5;
+
+    &:hover {
+      background-color: $warning;
+      font-weight: bold;
+
+    }
+
+    &:active {
+      background-color: #f5f5f5 !important;
+      font-weight: normal;
+    }
+
+    &:focus {
+
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  &.btn {
+    border-color: #f5f5f5;
+
+  }
+
+
+}
+
+.travel-map-mymap {
+  min-height: 350px;
+  height: 100%;
+  width: 100%;
+  /* padding: .5rem; */
+}
+
+.full-bg-survey {
+  min-height: 70vh;
+  height: auto;
+  background-position: left top;
+  background-repeat: repeat-x;
+  background-size: auto;
+
+  &.bg-survey {
+    background-image: url(/img/bg-survey.svg);
+  }
+}
+
+
+.gradient-white {
+  height: 100px;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffffff", GradientType=1);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.5s;
+  transition-property: opacity;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

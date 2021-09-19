@@ -32,6 +32,10 @@ Vue.filter('formatSize', function(size) {
   }
   return size.toString() + ' B'
 })
+Vue.filter('absolute', function(value) {
+  // slice to make a copy of array, then reverse the copy
+  return Math.abs(value)
+});
 Vue.filter('reverse', function(value) {
   // slice to make a copy of array, then reverse the copy
   return value.slice().reverse();

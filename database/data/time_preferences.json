@@ -1,0 +1,398 @@
+[
+    {
+        "id": "1",
+        "category_id": "1",
+        "city_id": "1",
+        "amount": "20"
+    },
+    {
+        "id": "2",
+        "category_id": "1",
+        "city_id": "2",
+        "amount": "60"
+    },
+    {
+        "id": "3",
+        "category_id": "1",
+        "city_id": "3",
+        "amount": "140"
+    },
+    {
+        "id": "4",
+        "category_id": "1",
+        "city_id": "4",
+        "amount": "170"
+    },
+    {
+        "id": "5",
+        "category_id": "1",
+        "city_id": "5",
+        "amount": "200"
+    },
+    {
+        "id": "6",
+        "category_id": "1",
+        "city_id": "6",
+        "amount": "210"
+    },
+    {
+        "id": "7",
+        "category_id": "1",
+        "city_id": "7",
+        "amount": "200"
+    },
+    {
+        "id": "8",
+        "category_id": "1",
+        "city_id": "8",
+        "amount": "60"
+    },
+    {
+        "id": "9",
+        "category_id": "1",
+        "city_id": "9",
+        "amount": "60"
+    },
+    {
+        "id": "10",
+        "category_id": "1",
+        "city_id": "10",
+        "amount": "40"
+    },
+    {
+        "id": "11",
+        "category_id": "1",
+        "city_id": "11",
+        "amount": "140"
+    },
+    {
+        "id": "12",
+        "category_id": "1",
+        "city_id": "12",
+        "amount": "50"
+    },
+    {
+        "id": "13",
+        "category_id": "1",
+        "city_id": "13",
+        "amount": "90"
+    },
+    {
+        "id": "14",
+        "category_id": "1",
+        "city_id": "14",
+        "amount": "110"
+    },
+    {
+        "id": "15",
+        "category_id": "1",
+        "city_id": "15",
+        "amount": "100"
+    },
+    {
+        "id": "16",
+        "category_id": "1",
+        "city_id": "16",
+        "amount": "110"
+    },
+    {
+        "id": "17",
+        "category_id": "1",
+        "city_id": "17",
+        "amount": "160"
+    },
+    {
+        "id": "18",
+        "category_id": "1",
+        "city_id": "18",
+        "amount": "150"
+    },
+    {
+        "id": "19",
+        "category_id": "2",
+        "city_id": "13",
+        "amount": "100"
+    },
+    {
+        "id": "20",
+        "category_id": "3",
+        "city_id": "1",
+        "amount": "20"
+    },
+    {
+        "id": "21",
+        "category_id": "3",
+        "city_id": "2",
+        "amount": "60"
+    },
+    {
+        "id": "22",
+        "category_id": "3",
+        "city_id": "3",
+        "amount": "140"
+    },
+    {
+        "id": "23",
+        "category_id": "3",
+        "city_id": "4",
+        "amount": "170"
+    },
+    {
+        "id": "24",
+        "category_id": "3",
+        "city_id": "5",
+        "amount": "200"
+    },
+    {
+        "id": "25",
+        "category_id": "3",
+        "city_id": "6",
+        "amount": "210"
+    },
+    {
+        "id": "26",
+        "category_id": "3",
+        "city_id": "7",
+        "amount": "200"
+    },
+    {
+        "id": "27",
+        "category_id": "4",
+        "city_id": "1",
+        "amount": "20"
+    },
+    {
+        "id": "28",
+        "category_id": "4",
+        "city_id": "2",
+        "amount": "60"
+    },
+    {
+        "id": "29",
+        "category_id": "4",
+        "city_id": "3",
+        "amount": "140"
+    },
+    {
+        "id": "30",
+        "category_id": "4",
+        "city_id": "4",
+        "amount": "170"
+    },
+    {
+        "id": "31",
+        "category_id": "4",
+        "city_id": "5",
+        "amount": "200"
+    },
+    {
+        "id": "32",
+        "category_id": "4",
+        "city_id": "6",
+        "amount": "210"
+    },
+    {
+        "id": "33",
+        "category_id": "4",
+        "city_id": "7",
+        "amount": "200"
+    },
+    {
+        "id": "34",
+        "category_id": "5",
+        "city_id": "1",
+        "amount": "20"
+    },
+    {
+        "id": "35",
+        "category_id": "5",
+        "city_id": "2",
+        "amount": "60"
+    },
+    {
+        "id": "36",
+        "category_id": "5",
+        "city_id": "3",
+        "amount": "140"
+    },
+    {
+        "id": "37",
+        "category_id": "5",
+        "city_id": "4",
+        "amount": "170"
+    },
+    {
+        "id": "38",
+        "category_id": "5",
+        "city_id": "5",
+        "amount": "200"
+    },
+    {
+        "id": "39",
+        "category_id": "5",
+        "city_id": "6",
+        "amount": "210"
+    },
+    {
+        "id": "40",
+        "category_id": "5",
+        "city_id": "7",
+        "amount": "200"
+    },
+    {
+        "id": "41",
+        "category_id": "5",
+        "city_id": "8",
+        "amount": "70"
+    },
+    {
+        "id": "42",
+        "category_id": "5",
+        "city_id": "9",
+        "amount": "60"
+    },
+    {
+        "id": "43",
+        "category_id": "5",
+        "city_id": "10",
+        "amount": "40"
+    },
+    {
+        "id": "44",
+        "category_id": "5",
+        "city_id": "11",
+        "amount": "150"
+    },
+    {
+        "id": "45",
+        "category_id": "5",
+        "city_id": "12",
+        "amount": "60"
+    },
+    {
+        "id": "46",
+        "category_id": "5",
+        "city_id": "13",
+        "amount": "100"
+    },
+    {
+        "id": "47",
+        "category_id": "5",
+        "city_id": "14",
+        "amount": "110"
+    },
+    {
+        "id": "48",
+        "category_id": "5",
+        "city_id": "15",
+        "amount": "100"
+    },
+    {
+        "id": "49",
+        "category_id": "5",
+        "city_id": "16",
+        "amount": "110"
+    },
+    {
+        "id": "50",
+        "category_id": "5",
+        "city_id": "17",
+        "amount": "160"
+    },
+    {
+        "id": "51",
+        "category_id": "5",
+        "city_id": "18",
+        "amount": "150"
+    },
+    {
+        "id": "52",
+        "category_id": "6",
+        "city_id": "13",
+        "amount": "100"
+    },
+    {
+        "id": "53",
+        "category_id": "7",
+        "city_id": "1",
+        "amount": "20"
+    },
+    {
+        "id": "54",
+        "category_id": "7",
+        "city_id": "2",
+        "amount": "60"
+    },
+    {
+        "id": "55",
+        "category_id": "7",
+        "city_id": "3",
+        "amount": "140"
+    },
+    {
+        "id": "56",
+        "category_id": "7",
+        "city_id": "4",
+        "amount": "170"
+    },
+    {
+        "id": "57",
+        "category_id": "7",
+        "city_id": "5",
+        "amount": "200"
+    },
+    {
+        "id": "58",
+        "category_id": "7",
+        "city_id": "6",
+        "amount": "210"
+    },
+    {
+        "id": "59",
+        "category_id": "8",
+        "city_id": "7",
+        "amount": "200"
+    },
+    {
+        "id": "60",
+        "category_id": "8",
+        "city_id": "1",
+        "amount": "20"
+    },
+    {
+        "id": "61",
+        "category_id": "8",
+        "city_id": "2",
+        "amount": "60"
+    },
+    {
+        "id": "62",
+        "category_id": "8",
+        "city_id": "3",
+        "amount": "140"
+    },
+    {
+        "id": "63",
+        "category_id": "8",
+        "city_id": "4",
+        "amount": "170"
+    },
+    {
+        "id": "64",
+        "category_id": "8",
+        "city_id": "5",
+        "amount": "200"
+    },
+    {
+        "id": "65",
+        "category_id": "8",
+        "city_id": "6",
+        "amount": "210"
+    },
+    {
+        "id": "66",
+        "category_id": "8",
+        "city_id": "7",
+        "amount": "200"
+    }
+]
