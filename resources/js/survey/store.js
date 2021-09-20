@@ -19,6 +19,10 @@ export const store = new Vuex.Store({
       singkawang_related: null,
       city_id: null,
       category_id: null,
+      income: {
+        min: 0,
+        max: 0
+      },
       step: {
         id: null,
         name: ""
@@ -32,6 +36,8 @@ export const store = new Vuex.Store({
       state.respondent.is_singkawang_domicile = n.is_singkawang_domicile;
       state.respondent.singkawang_related = n.singkawang_related;
       state.respondent.step = n.step;
+      state.respondent.income.min = n.income.min;
+      state.respondent.income.max = n.income.max;
       state.respondent.city_id = n.city_id;
       state.respondent.category_id = n.category_id;
     },
@@ -62,6 +68,10 @@ export const store = new Vuex.Store({
         step: creds.step,
         is_singkawang_domicile: creds.is_singkawang_domicile,
         singkawang_related: creds.singkawang_related,
+        income: {
+          min: creds.income.min,
+          max: creds.income.max
+        },
         city_id: creds.city_id,
         category_id: creds.category_id,
         // transportation_mode_id: creds.transportation_mode_id,

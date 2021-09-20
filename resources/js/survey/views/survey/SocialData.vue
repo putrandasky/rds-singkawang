@@ -52,7 +52,7 @@
             </div>
           </div>
         </b-card>
-        <b-btn variant="primary" class="font-weight-bold" block @click="nextStep(6,25)">Lanjut</b-btn>
+        <b-btn v-if="input.avg_transportation_cost != null" variant="primary" class="font-weight-bold" block @click="nextStep(6,25)">Lanjut</b-btn>
       </b-col>
       <card-survey v-if="step == 6" action="Lanjut" :options="options.vehicle" @onNext="nextStep(7,30)" @onChange="input.vehicle = $event">
         <template v-slot:question>
@@ -162,7 +162,7 @@
           job: null,
           income: null,
           vehicle: null,
-          avg_transportation_cost: 0,
+          avg_transportation_cost: null,
           is_singkawang_domicile: null,
           domicile_city: '',
           domicile_province: '',

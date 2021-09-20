@@ -29,19 +29,22 @@ class SurveyController extends Controller
         $respondent->is_singkawang_domicile = $request->is_singkawang_domicile;
         $respondent->domicile_city = $request->domicile_city;
         $respondent->domicile_province = $request->domicile_province;
-        $respondent->travel_frequence = $request->travel_frequence;
-        $respondent->singkawang_related = $request->singkawang_related;
+
         $respondent->token = $request->token;
         $respondent->step_id = 2;
         $respondent->save();
         $respondent = Models\Respondent::where([
             'token' => $request->token,
-        ])->with('step')->first();
+        ])->with('step', 'income')->first();
 
         return response()->json([
             'message' => 'Data sosial responden berhasil disimpan',
             'token' => $respondent->token,
             'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
+            'income' => [
+                'min' => $respondent->income->min,
+                'max' => $respondent->income->max,
+            ],
             'step' => $respondent->step->description,
         ], 200);
 
@@ -56,17 +59,33 @@ class SurveyController extends Controller
             return response()->json(['message' => 'Responden tidak ditemukan'], 500);
         }
         $respondent->travel_frequence = $request->travel_frequence;
+        $respondent->avg_airplane_transportation_cost = $request->avg_airplane_transportation_cost;
         $respondent->singkawang_related = $request->singkawang_related;
-        $respondent->step_id = $request->singkawang_related == 0 ? 6 : 3;
+        $respondent->singkawang_related_potentially = $request->singkawang_related_potentially;
+        if ($request->singkawang_related_potentially == 0) {
+            if ($request->singkawang_related == 0) {
+                $respondent->step_id = 6;
+            } else {
+                $respondent->step_id = 3;
+
+            }
+        } else {
+            $respondent->step_id = 3;
+
+        }
         $respondent->save();
 
-        $respondent = Models\Respondent::where('token', $request->token)->with('step')->first();
+        $respondent = Models\Respondent::where('token', $request->token)->with('step', 'income')->first();
         if ($respondent) {
             return response()->json([
                 'message' => 'Screening responden berhasil disimpan',
                 'token' => $request->token,
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
+                'income' => [
+                    'min' => $respondent->income->min,
+                    'max' => $respondent->income->max,
+                ],
                 'step' => $respondent->step->description,
                 'status' => 'exist'], 200);
         }
@@ -115,6 +134,10 @@ class SurveyController extends Controller
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
                 'step' => $respondent->step->description,
+                'income' => [
+                    'min' => $respondent->income->min,
+                    'max' => $respondent->income->max,
+                ],
                 'status' => 'exist'], 200);
 
         }
@@ -122,12 +145,12 @@ class SurveyController extends Controller
         $transportation_modes = collect($request->multi_trip)->pluck('transportation_mode_id');
         $using_plane = collect($transportation_modes)->contains(1);
         $using_ferry = collect($transportation_modes)->contains(2);
-        $using_bus = collect($transportation_modes)->contains(3);
-        $using_car = collect($transportation_modes)->contains(4);
+        $using_bus = collect($transportation_modes)->contains(5);
+        $using_car = collect($transportation_modes)->contains(3) || collect($transportation_modes)->contains(4);
         $jakarta = $request->city == 13;
         $kalimantan = collect([1, 2, 3, 4, 5, 6, 7])->contains($request->city);
         //check if respondent heading out from singkawang
-        if ($respondent->singkawang_related == 1) {
+        if ($respondent->singkawang_related == 1 || $respondent->singkawang_related_potentially == 1) {
             //check if respondent have  trip with airplane
             if ($using_plane) {
                 $respondent->category_id = 1;
@@ -147,10 +170,14 @@ class SurveyController extends Controller
                     'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                     'singkawang_related' => $respondent->singkawang_related,
                     'step' => $respondent->step->description,
+                    'income' => [
+                        'min' => $respondent->income->min,
+                        'max' => $respondent->income->max,
+                    ],
                     'status' => 'exist'], 200);
 
             }
-        } elseif ($respondent->singkawang_related == 2) {
+        } elseif ($respondent->singkawang_related == 2 || $respondent->singkawang_related_potentially == 2) {
             if ($using_plane) {
                 $respondent->category_id = 5;
             } elseif (($using_ferry && !$using_plane) && $jakarta) {
@@ -169,6 +196,10 @@ class SurveyController extends Controller
                     'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                     'singkawang_related' => $respondent->singkawang_related,
                     'step' => $respondent->step->description,
+                    'income' => [
+                        'min' => $respondent->income->min,
+                        'max' => $respondent->income->max,
+                    ],
                     'status' => 'exist'], 200);
 
             }
@@ -183,6 +214,10 @@ class SurveyController extends Controller
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
                 'step' => $respondent->step->description,
+                'income' => [
+                    'min' => $respondent->income->min,
+                    'max' => $respondent->income->max,
+                ],
                 'status' => 'exist'], 200);
 
         }
@@ -196,6 +231,10 @@ class SurveyController extends Controller
             'city_id' => $respondent->city_id,
             'category_id' => $respondent->category_id,
             'step' => $respondent->step->description,
+            'income' => [
+                'min' => $respondent->income->min,
+                'max' => $respondent->income->max,
+            ],
             'status' => 'exist'], 200);
 
     }
@@ -255,6 +294,10 @@ class SurveyController extends Controller
             'city_id' => $respondent->city_id,
             'category_id' => $respondent->category_id,
             'step' => $respondent->step->description,
+            'income' => [
+                'min' => $respondent->income->min,
+                'max' => $respondent->income->max,
+            ],
             'status' => 'exist'], 200);
 
     }

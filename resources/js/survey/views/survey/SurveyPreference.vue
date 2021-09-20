@@ -33,7 +33,7 @@
               biaya tiket sebesar:
             </p>
             <p v-if="categoryId == 4 || categoryId == 8">
-              Apakah kamu bersedia beralih dari menggunakan mobil pribadi menjadi pesawat dengan rute tersebut dan Biaya tiket seharga:
+              Apakah kamu bersedia beralih dari menggunakan mobil/motor pribadi menjadi pesawat dengan rute tersebut dan biaya tiket seharga:
             </p>
             <div class="text-center">
 

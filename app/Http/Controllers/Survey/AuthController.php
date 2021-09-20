@@ -16,13 +16,17 @@ class AuthController extends Controller
             $token = Str::random(100);
             return response()->json(['token' => $token, 'status' => 'new'], 200);
         }
-        $respondent = Models\Respondent::where('token', $request->token)->with('step')->first();
+        $respondent = Models\Respondent::where('token', $request->token)->with('step', 'income')->first();
         if ($respondent) {
             return response()->json([
                 'token' => $request->token,
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
                 'step' => $respondent->step->description,
+                'income' => [
+                    'min' => $respondent->income->min,
+                    'max' => $respondent->income->max,
+                ],
                 'status' => 'exist'], 200);
         }
         $token = $request->token;

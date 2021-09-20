@@ -13,4 +13,8 @@ class Respondent extends Model
     {
         return $this->belongsTo(Step::class);
     }
+    public function income()
+    {
+        return $this->belongsTo(Income::class);
+    }
 }
