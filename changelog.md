@@ -1,3 +1,9 @@
+# 21 Sept 21
+## 1.2
+### FIXED
+- Singkawang related wrong code
+### ADDED
+- New Question and logic for screening data
 # 20 Sept 21
 ## 1.1
 ### FIXED
