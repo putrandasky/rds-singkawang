@@ -9,15 +9,15 @@
           <b>Hai Indonesia!</b>
         </p>
         <div class="text-white">
-          <p>Dalam upaya mendukung pergerakan masyarakat nasional yang lebih efektif dan efisien, ketersediaan insfrastruktur transportasi udara dan pengelolaan bandar udara memiliki peran yang sangat penting. Salah satu upaya untuk mewujudkan hal tersebut adalah melalui pembangunan Bandar Udara Singkawang, di Kalimantan Barat..
+          <p>Dalam upaya mendukung pergerakan masyarakat nasional yang lebih efektif dan efisien, ketersediaan insfrastruktur transportasi udara dan pengelolaan bandar udara memegang peran yang sangat penting. Salah satu caranya adalah melalui pembangunan Bandar Udara Singkawang, di Kalimantan Barat.
           </p>
-          <p>Kota Singkawang memiliki potensi pariwisata yang cukup besar untuk menarik wisatawan domestik maupun mancanegara. Realisasi pembangunan Bandar Udara ini diharapkan dapat semakin mempermudah aksesibilitas untuk mobilitas penumpang transportasi udara di Indonesia, serta meningkatkan kegiatan ekonomi dan pariwisata di Kota Singkawang dan sekitarnya. Maka dari itu, Apakah kamu sudah siap untuk menjadi bagian dari program pemerintah ini?</p>
-          <p>Yuk, ikutan survei permintaan calon penumpang Bandar Udara Singkawang dan raih kesempatan untuk memenangkan berbagai hadiah! </p>
-          <p>Hasil survei ini akan menjadi masukan bagi stakeholder agar dapat memberikan pelayanan yang sesuai bagi masyarakat. Untuk itu, silakan mengisi survei ini dengan jujur dan lengkap ya!</p>
+          <p>Apakah Anda sudah siap untuk menjadi bagian dari program pemerintah ini?</p>
+          <p>Yuk, ikutan survei ini untuk membantu pemerintah memberikan pelayanan Bandara Singkawang yang memuaskan dan raih kesempatan untuk memenangkan berbagai hadiah! </p>
+
           <ul class="pl-3">
             <li>Data yang masuk tidak akan dipublikasikan atau diberikan kepada pihak mana pun dan akan digunakan semata-mata untuk studi internal Bandar Udara Singkawang.
             </li>
-            <li>Hadiah dipersembahkan oleh Tim Konsultan Studi.</li>
+            <li>Hadiah dipersembahkan oleh Tim Konsultan Studi bagi responden terpilih yang mengisi survei sampai akhir termasuk data social ekonomi dan identitas pribadi.</li>
           </ul>
         </div>
         <div class="w-100 text-center">

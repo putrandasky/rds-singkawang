@@ -70,10 +70,10 @@
             <p>
               Dimana kota domisili kamu saat ini?
             </p>
-            <label for="domicile_city">Kota</label>
-            <b-input v-model="input.domicile_city"></b-input>
             <label class="mt-2" for="provice">Provinsi</label>
             <b-input v-model="input.domicile_province"></b-input>
+            <label for="domicile_city">Kota</label>
+            <b-input v-model="input.domicile_city"></b-input>
           </div>
         </b-card>
         <b-btn v-if="input.domicile_city != '' && input.domicile_province != ''" variant="primary" class="font-weight-bold" block @click="submit">Kirim</b-btn>

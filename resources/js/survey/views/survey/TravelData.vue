@@ -135,7 +135,10 @@
     components: {
       CardSurvey
     },
-    mixins: [AuthRespondent, MethodsSurvey],
+    mixins: [
+      //   AuthRespondent,
+      MethodsSurvey
+    ],
     props: ["routerData"],
     data: function() {
       return {
