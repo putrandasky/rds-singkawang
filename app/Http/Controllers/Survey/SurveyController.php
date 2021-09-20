@@ -82,6 +82,7 @@ class SurveyController extends Controller
                 'token' => $request->token,
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
+                'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
                 'income' => [
                     'min' => $respondent->income->min,
                     'max' => $respondent->income->max,
@@ -133,6 +134,7 @@ class SurveyController extends Controller
                 'token' => $request->token,
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
+                'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
                 'step' => $respondent->step->description,
                 'income' => [
                     'min' => $respondent->income->min,
@@ -169,6 +171,7 @@ class SurveyController extends Controller
                     'token' => $request->token,
                     'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                     'singkawang_related' => $respondent->singkawang_related,
+                    'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
                     'step' => $respondent->step->description,
                     'income' => [
                         'min' => $respondent->income->min,
@@ -195,6 +198,8 @@ class SurveyController extends Controller
                     'token' => $request->token,
                     'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                     'singkawang_related' => $respondent->singkawang_related,
+                    'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
+
                     'step' => $respondent->step->description,
                     'income' => [
                         'min' => $respondent->income->min,
@@ -213,6 +218,7 @@ class SurveyController extends Controller
                 'token' => $request->token,
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
+                'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
                 'step' => $respondent->step->description,
                 'income' => [
                     'min' => $respondent->income->min,
@@ -228,6 +234,7 @@ class SurveyController extends Controller
             'token' => $request->token,
             'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
             'singkawang_related' => $respondent->singkawang_related,
+            'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
             'city_id' => $respondent->city_id,
             'category_id' => $respondent->category_id,
             'step' => $respondent->step->description,
@@ -291,6 +298,7 @@ class SurveyController extends Controller
             'token' => $request->token,
             'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
             'singkawang_related' => $respondent->singkawang_related,
+            'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
             'city_id' => $respondent->city_id,
             'category_id' => $respondent->category_id,
             'step' => $respondent->step->description,

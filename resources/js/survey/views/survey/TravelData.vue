@@ -4,8 +4,8 @@
       <b-card class="shadow-sm mb-3">
         <div>
           <p>
-            <span v-if="singkawang_related == 1">Sebelum adanya pandemic Covid 19, Kota apa yang paling sering kamu kunjungi sebagai destinasi di luar kota Singkawang dan sekitarnya? (kamu hanya bisa memilih 1 kota, harap jawab kota terdekat dengan pilihan berikut)</span>
-            <span v-if="singkawang_related == 2">Sebelum adanya pandemic Covid 19, Darimana asal kota kamu sebelum bepergian menuju Kota Singkawang dan sekitarnya? (harap jawab kota terdekat dengan pilihan berikut)</span>
+            <span v-if="singkawang_related == 1 || singkawang_related_potentially == 1">Kota apa yang paling sering anda kunjungi sebagai destinasi di luar kota Singkawang dan sekitarnya? (anda hanya bisa memilih 1 kota, harap jawab kota terdekat dengan pilihan berikut)</span>
+            <span v-if="singkawang_related == 2 || singkawang_related_potentially == 2">Darimana asal kota anda sebelum bepergian menuju Kota Singkawang dan sekitarnya? (harap jawab kota terdekat dengan pilihan berikut)</span>
           </p>
           <b-form-select stacked :options="options.city" v-model="input.city" button-variant="outline-warning" buttons class="btn-block">
             <template slot="first">
@@ -177,7 +177,8 @@
     },
     computed: {
       ...mapState({
-        singkawang_related: state => state.respondent.singkawang_related
+        singkawang_related: state => state.respondent.singkawang_related,
+        singkawang_related_potentially: state => state.respondent.singkawang_related_potentially,
 
 
       })

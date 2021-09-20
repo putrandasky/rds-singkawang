@@ -1,4 +1,7 @@
 # 21 Sept 21
+## 1.3
+### FIXED
+- Singkawang related potentially not considered in city question
 ## 1.2
 ### FIXED
 - Singkawang related wrong code
