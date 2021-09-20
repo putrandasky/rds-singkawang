@@ -22,6 +22,7 @@ class AuthController extends Controller
                 'token' => $request->token,
                 'is_singkawang_domicile' => $respondent->is_singkawang_domicile,
                 'singkawang_related' => $respondent->singkawang_related,
+                'singkawang_related_potentially' => $respondent->singkawang_related_potentially,
                 'step' => $respondent->step->description,
                 'income' => [
                     'min' => $respondent->income->min,
