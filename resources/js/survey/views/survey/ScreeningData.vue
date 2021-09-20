@@ -47,7 +47,7 @@
   export default {
     name: 'ScreeningData',
     mixins: [
-      // AuthRespondent,
+      AuthRespondent,
       MethodsSurvey
     ],
     props: ["routerData"],

@@ -26,13 +26,13 @@ export const AuthRespondent = {
                 "token is in local storage & exist in database"
               );
               this.$store.dispatch("storeToken", response.data);
-              //   if (this.$route.name !== response.data.step) {
-              //     this.handleRoute(
-              //       response.data.token,
-              //       response.data.step
-              //     );
-              //     return;
-              //   }
+              if (this.$route.name !== response.data.step) {
+                this.handleRoute(
+                  response.data.token,
+                  response.data.step
+                );
+                return;
+              }
               if (typeof this.$route.query.token === "undefined" || this.$route.query.token !== response.data.token) {
                 this.$router.replace({
                   query: Object.assign({}, this.$route.query, {
@@ -47,15 +47,15 @@ export const AuthRespondent = {
                 "token in local storage & not exist in database"
               );
               localStorage.token_respondent = response.data.token;
-              //   if (this.$route.name !== "SocialData") {
-              //     if (this.$route.name !== "Home") {
-              //       this.handleRoute(
-              //         response.data.token,
-              //         "Home"
-              //       );
-              //       return;
-              //     }
-              //   }
+              if (this.$route.name !== "SocialData") {
+                if (this.$route.name !== "Home") {
+                  this.handleRoute(
+                    response.data.token,
+                    "Home"
+                  );
+                  return;
+                }
+              }
               // console.log(
               //     "test"
               // );
@@ -95,24 +95,32 @@ export const AuthRespondent = {
                   "storeToken",
                   response.data
                 );
-                // if (this.$route.name !== response.data.step) {
-                //   this.handleRoute(
-                //     response.data.token,
-                //     response.data.step
-                //   );
-                // }
+                if (this.$route.name !== response.data.step) {
+                  this.handleRoute(
+                    response.data.token,
+                    response.data.step
+                  );
+                }
               } else {
                 console.log("token not exist in database");
                 localStorage.token_respondent =
                   response.data.token;
                 if (this.$route.name !== "SocialData") {
-                  //   if (this.$route.name !== "Home") {
-                  //     this.handleRoute(
-                  //       response.data.token,
-                  //       "Home"
-                  //     );
-                  //   }
+                  if (this.$route.name !== "Home") {
+                    this.handleRoute(
+                      response.data.token,
+                      "Home"
+                    );
+                  }
                 }
+                // if (this.$route.name == "Home") {
+                //     console.log("new2");
+                //     this.$router.replace({
+                //         query: Object.assign({}, this.$route.query, {
+                //             token: response.data.token
+                //         })
+                //     });
+                // }
                 this.isChecking = false;
               }
             })

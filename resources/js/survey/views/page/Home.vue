@@ -39,8 +39,30 @@
     data: function() {
       return {}
     },
-    created() {},
+    created() {
+      this.getNewToken()
+    },
     methods: {
+      getNewToken() {
+        axios
+          .get(`/respondent/survey/auth-respondent`)
+          .then(response => {
+            console.log("get new token from server");
+            // console.log(response.data);
+            localStorage.token_respondent = response.data.token;
+
+
+            this.$router.replace({
+              query: Object.assign({}, this.$route.query, {
+                token: response.data.token
+              })
+            });
+            this.isChecking = false;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
       handleNext() {
         this.$router.replace({
           path: 'survey/social-data',

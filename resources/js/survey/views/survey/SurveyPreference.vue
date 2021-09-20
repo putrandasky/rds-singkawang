@@ -82,7 +82,7 @@
   export default {
     name: 'SurveyPreference',
     mixins: [
-      // AuthRespondent,
+      AuthRespondent,
       MethodsSurvey
     ],
     props: ["routerData"],

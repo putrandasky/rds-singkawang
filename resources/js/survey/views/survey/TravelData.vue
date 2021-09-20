@@ -136,7 +136,7 @@
       CardSurvey
     },
     mixins: [
-      //   AuthRespondent,
+      AuthRespondent,
       MethodsSurvey
     ],
     props: ["routerData"],
