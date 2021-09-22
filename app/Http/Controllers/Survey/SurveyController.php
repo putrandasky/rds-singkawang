@@ -323,7 +323,7 @@ class SurveyController extends Controller
     {
         $rules = [
             'name' => 'required|string|min:3',
-            'phone' => 'required|numeric|min:6|max:12',
+            'phone' => 'required|numeric|between:100000,999999999999',
             'email' => 'required|email',
             'address' => 'required|min:10',
         ];
@@ -334,8 +334,7 @@ class SurveyController extends Controller
             'email.email' => 'Mohon masukan email anda dengan benar',
             'phone.required' => 'Telepon anda diperlukan',
             'phone.numeric' => 'Telepon anda harus berupa angka',
-            'phone.min' => 'Masukan minimum 6 angka',
-            'phone.max' => 'Masukan maksimum 12 angka',
+            'phone.between' => 'Masukan nomor min 6 dan max 12 angka',
             'address.required' => 'Harap masukan alamat lengkap rumah anda',
             'address.min' => 'Masukan minimum 10 huruf',
         ];

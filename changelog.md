@@ -1,4 +1,7 @@
 # 22 Sept 21
+## 1.4.1
+### REVISED
+- Rule Validation for phone
 ## 1.4
 ### REVISED
 - Realign PT PII logo and Kemenhub
