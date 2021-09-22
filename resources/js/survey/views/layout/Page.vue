@@ -5,7 +5,7 @@
       <b-container>
         <b-row>
           <b-col sm="12" class="text-md-left text-center pt-2 ">
-            <b-img fluid src="/img/icon-kemenhub-ptpii.svg"></b-img>
+            <b-img fluid src="/img/icon-ptpii-kemenhub.svg"></b-img>
 
           </b-col>
         </b-row>
@@ -17,7 +17,7 @@
     <div class="bg-warning w-100 d-flex align-items-center mt-auto" style="height:60px">
       <b-container>
         <div class="text-md-right text-center ">
-          <b-img fluid src="/img/icon-aecom-kpmg.svg"></b-img>
+          <b-img fluid src="/img/icon-kpmg-aecom.svg"></b-img>
 
         </div>
       </b-container>

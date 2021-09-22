@@ -1,3 +1,11 @@
+# 22 Sept 21
+## 1.4
+### REVISED
+- Realign PT PII logo and Kemenhub
+- Realign KPMG and AECOM Logo
+### ADDED
+- Question Travel Frequence for city related singkawang
+- form select for provinces and regencies
 # 21 Sept 21
 ## 1.3
 ### FIXED

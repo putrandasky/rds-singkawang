@@ -13,12 +13,15 @@
           </p>
           <p>Apakah Anda sudah siap untuk menjadi bagian dari program pemerintah ini?</p>
           <p>Yuk, ikutan survei ini untuk membantu pemerintah memberikan pelayanan Bandara Singkawang yang memuaskan dan raih kesempatan untuk memenangkan berbagai hadiah! </p>
-
-          <ul class="pl-3">
-            <li>Data yang masuk tidak akan dipublikasikan atau diberikan kepada pihak mana pun dan akan digunakan semata-mata untuk studi internal Bandar Udara Singkawang.
-            </li>
-            <li>Hadiah dipersembahkan oleh Tim Konsultan Studi bagi responden terpilih yang mengisi survei sampai akhir termasuk data social ekonomi dan identitas pribadi.</li>
-          </ul>
+          <small>
+            <i>
+              <ul class="pl-3">
+                <li>Data yang masuk tidak akan dipublikasikan atau diberikan kepada pihak mana pun dan akan digunakan semata-mata untuk studi internal Bandar Udara Singkawang.
+                </li>
+                <li>Hadiah dipersembahkan oleh Tim Konsultan Studi bagi responden terpilih yang mengisi survei sampai akhir termasuk data social ekonomi dan identitas pribadi.</li>
+              </ul>
+            </i>
+          </small>
         </div>
         <div class="w-100 text-center">
           <b-btn variant="warning" class="px-5" @click="handleNext"><b> <i class="ri-send-plane-fill mr-1"></i>Mulai Survei</b></b-btn>

@@ -30,9 +30,22 @@
           </b-form-group>
         </div>
       </b-card>
-      <b-btn v-if="input.travel_purpose != null" variant="primary" class="font-weight-bold" block @click="nextStep(3,60)">Lanjut</b-btn>
+      <b-btn v-if="input.travel_purpose != null" variant="primary" class="font-weight-bold" block @click="nextStep(3,58)">Lanjut</b-btn>
     </b-col>
-    <b-col v-if="step == 3" lg="4" md="6" sm="8">
+    <b-col v-if="step == 3 " lg="4" md="6" sm="8">
+      <b-card class="shadow-sm mb-3">
+        <div>
+          <p>
+            Dalam satu tahun, berapa kali anda melakukan perjalanan pada pertanyaan sebelumnya?
+          </p>
+          <vue-slider v-model="input.travel_city_frequence" :height="6" :min="0" :max="365" :interval="1">
+
+          </vue-slider>
+        </div>
+      </b-card>
+      <b-btn v-if="input.travel_city_frequence !=null" variant="primary" class="font-weight-bold" block @click="nextStep(4,60)">Lanjut</b-btn>
+    </b-col>
+    <b-col v-if="step == 4" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>
           <p>
@@ -94,7 +107,7 @@
               <b-button variant="secondary" @click="back(i)" v-if=" i > 0">Kembali</b-button>
               <span v-if="v.destination != '' &&v.transportation_mode_id >0 && v.cost > 0 && v.duration_minutes != null && v.duration_hours != null ">
                 <b-button variant="warning" @click="addTripDetail">Tambah Tujuan</b-button>
-                <b-button variant="primary" @click="nextStep(4,65)">Lanjut</b-button>
+                <b-button variant="primary" @click="nextStep(5,65)">Lanjut</b-button>
               </span>
             </div>
           </div>
@@ -103,7 +116,7 @@
       </b-card>
 
     </b-col>
-    <b-col v-if="step == 4" lg="4" md="6" sm="8">
+    <b-col v-if="step == 5" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>
           <p>
@@ -154,6 +167,7 @@
           travel_purpose: null,
           travel_purpose_other: '',
           avg_trip_cost: null,
+          travel_city_frequence: null,
           multi_trip: [{
             transportation_mode_id: null,
             transportation_mode_others: '',

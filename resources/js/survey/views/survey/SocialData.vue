@@ -70,10 +70,20 @@
             <p>
               Dimana kota domisili kamu saat ini?
             </p>
-            <label class="mt-2" for="provice">Provinsi</label>
-            <b-input v-model="input.domicile_province"></b-input>
-            <label for="domicile_city">Kota</label>
-            <b-input v-model="input.domicile_city"></b-input>
+            <b-form-group label="Provinsi">
+              <b-form-select @input="getRegencies($event)" stacked :options="options.domicile_province" v-model="input.domicile_province" button-variant="outline-warning" buttons class="btn-block">
+                <template slot="first">
+                  <option :value="null" disabled>-- Pilih Provinsi --</option>
+                </template>
+              </b-form-select>
+            </b-form-group>
+            <b-form-group label="Kota">
+              <b-form-select stacked :options="options.domicile_city" v-model="input.domicile_city" button-variant="outline-warning" buttons class="btn-block">
+                <template slot="first">
+                  <option :value="null" disabled>-- {{regenciesPlaceholder}} --</option>
+                </template>
+              </b-form-select>
+            </b-form-group>
           </div>
         </b-card>
         <b-btn v-if="input.domicile_city != '' && input.domicile_province != ''" variant="primary" class="font-weight-bold" block @click="submit">Kirim</b-btn>
@@ -136,6 +146,7 @@
         animationSpeed: 1,
         step: 1,
         sliderTooltipFormat: '{value}%',
+        regenciesPlaceholder: 'Pilih Provinsi Dulu',
         income: {
           options: [],
           selected: []
@@ -146,6 +157,8 @@
           job: [],
           income: [],
           vehicle: [],
+          domicile_city: [],
+          domicile_province: [],
           is_singkawang_domicile: [{
               value: 1,
               text: 'Ya'
@@ -164,15 +177,14 @@
           vehicle: null,
           avg_transportation_cost: null,
           is_singkawang_domicile: null,
-          domicile_city: '',
-          domicile_province: '',
+          domicile_city: null,
+          domicile_province: null,
         }
       }
     },
     created() {
       this.getData();
       this.$emit("childinit", this.routerData);
-
     },
     watch: {
       'input.income': function(newVal, oldVal) {
@@ -212,6 +224,18 @@
       modalWelcomeButton() {
         this.modalWelcome = false
       },
+      getRegencies(province_id) {
+        axios.get(`/region/province/${province_id}`)
+          .then((response) => {
+            console.log(response.data)
+            this.input.domicile_city = null
+            this.regenciesPlaceholder = 'Pilih Kota'
+            this.options.domicile_city = this.mutateKey(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      },
       getData() {
         this.isLoading = true;
         this.$store.dispatch("isLoading", true);
@@ -223,6 +247,7 @@
             this.options.age = this.mutateKey(response.data.age);
             this.options.job = this.mutateKey(response.data.job);
             this.options.income = this.mutateKey(response.data.income);
+            this.options.domicile_province = this.mutateKey(response.data.province);
             this.options.vehicle = this.mutateKey(
               response.data.vehicle
             );
@@ -233,7 +258,7 @@
               this.isLoading = false;
 
               this.$store.dispatch("isLoading", false);
-              this.modalWelcome = true
+              this.modalWelcome = false
             }, 200);
           })
           .catch(error => {

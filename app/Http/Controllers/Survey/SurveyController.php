@@ -15,6 +15,7 @@ class SurveyController extends Controller
         $data['job'] = Models\Job::all();
         $data['income'] = Models\Income::all();
         $data['vehicle'] = Models\Vehicle::all();
+        $data['province'] = Models\Province::all();
         return $data;
     }
     public function storeSocialData(Request $request)
@@ -112,6 +113,7 @@ class SurveyController extends Controller
         $respondent->travel_purpose_id = $request->travel_purpose;
         $respondent->travel_purpose_other = $request->travel_purpose_other;
         $respondent->avg_trip_cost = $request->avg_trip_cost;
+        $respondent->travel_city_frequence = $request->travel_city_frequence;
         $respondent->save();
 
         for ($i = 0; $i < count($request['multi_trip']); $i++) {
@@ -321,7 +323,7 @@ class SurveyController extends Controller
     {
         $rules = [
             'name' => 'required|string|min:3',
-            'phone' => 'required|numeric|min:6',
+            'phone' => 'required|numeric|min:6|max:12',
             'email' => 'required|email',
             'address' => 'required|min:10',
         ];
@@ -333,6 +335,7 @@ class SurveyController extends Controller
             'phone.required' => 'Telepon anda diperlukan',
             'phone.numeric' => 'Telepon anda harus berupa angka',
             'phone.min' => 'Masukan minimum 6 angka',
+            'phone.max' => 'Masukan maksimum 12 angka',
             'address.required' => 'Harap masukan alamat lengkap rumah anda',
             'address.min' => 'Masukan minimum 10 huruf',
         ];
