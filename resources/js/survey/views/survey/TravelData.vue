@@ -25,7 +25,7 @@
           </p>
           <b-form-radio-group stacked :options="options.travel_purpose" v-model="input.travel_purpose" button-variant="outline-warning" buttons class="btn-block">
           </b-form-radio-group>
-          <b-form-group v-if="input.travel_purpose == 7" label="Tulis tujuan kamu" label-for="travel_purpose_other">
+          <b-form-group v-if="input.travel_purpose == 7" label="Tulis tujuan anda" label-for="travel_purpose_other">
             <b-form-input id="travel_purpose_other" v-model="input.travel_purpose_other" trim></b-form-input>
           </b-form-group>
         </div>
@@ -49,7 +49,7 @@
       <b-card class="shadow-sm mb-3">
         <div>
           <p>
-            Bagaimana biasanya kamu melakukan perjalanan tersebut? Sebutkan kendaraan apa saja yang kamu gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya
+            Bagaimana biasanya anda melakukan perjalanan tersebut? Sebutkan kendaraan apa saja yang anda gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya
           </p>
           <div v-for="(v,i) in input.multi_trip" :key="i" v-show="input.multi_trip.length == (i + 1)">
             <div class="text-center mb-2">
@@ -120,7 +120,7 @@
       <b-card class="shadow-sm mb-3">
         <div>
           <p>
-            Berapakah harga tiket rata-rata per orang per rute yang kamu keluarkan untuk melakukan perjalanan di pertanyaan sebelumnya?
+            Berapakah harga tiket rata-rata per orang per rute yang anda keluarkan untuk melakukan perjalanan di pertanyaan sebelumnya?
           </p>
           <vue-slider tooltip="none" v-model="input.avg_trip_cost" :height="6" :min="100000" :max="16000000" :interval="100000" />
           <div class="text-center">

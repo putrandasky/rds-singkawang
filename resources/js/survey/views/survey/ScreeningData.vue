@@ -5,7 +5,7 @@
       <b-card class="shadow-sm mb-3">
         <div>
           <p>
-            Sebelum adanya pandemic Covid 19, Dalam satu tahun, berapa kali kamu melakukan perjalanan menggunakan pesawat?
+            Sebelum adanya pandemic Covid 19, Dalam satu tahun, berapa kali anda melakukan perjalanan menggunakan pesawat?
           </p>
           <vue-slider v-model="input.travel_frequence" :height="6" :min="0" :max="365" :interval="1" />
 

@@ -6,7 +6,7 @@
           <div>
 
             <p>
-              Kalau kamu bepergian dari Kota Singkawang dan sekitarnya menuju Kota <b>{{city.description}}</b> dapat menggunakan rute pesawat langsung Singkawang – <b>{{city.airport}}</b>, dengan waktu penerbangan
+              Kalau anda bepergian dari Kota Singkawang dan sekitarnya menuju Kota <b>{{city.description}}</b> dapat menggunakan rute pesawat langsung Singkawang – <b>{{city.airport}}</b>, dengan waktu penerbangan
             </p>
             <div class="text-center">
               <p>
@@ -14,10 +14,10 @@
               </p>
             </div>
             <p v-if="categoryId == 1 ||  categoryId == 5">
-              Apakah kamu bersedia beralih menggunakan rute pesawat tersebut dengan biaya tiket seharga:
+              Apakah anda bersedia beralih menggunakan rute pesawat tersebut dengan biaya tiket seharga:
             </p>
             <p v-if="categoryId == 2 ||  categoryId == 6">
-              Apakah kamu bersedia beralih dari menggunakan ferry menjadi pesawat dengan rute tersebut dan
+              Apakah anda bersedia beralih dari menggunakan ferry menjadi pesawat dengan rute tersebut dan
               <b>
                 <span v-if="currentData.costState.amount>=0">tambahan</span>
                 <span v-if="currentData.costState.amount<0">penghematan</span>
@@ -25,7 +25,7 @@
               </b>
             </p>
             <p v-if="categoryId == 3 ||  categoryId == 7">
-              Apakah kamu bersedia beralih dari menggunakan bus menjadi pesawat dengan rute tersebut dan
+              Apakah anda bersedia beralih dari menggunakan bus menjadi pesawat dengan rute tersebut dan
               <b>
                 <span v-if="currentData.costState.amount>=0">tambahan</span>
                 <span v-if="currentData.costState.amount<0">penghematan</span>
@@ -33,7 +33,7 @@
               biaya tiket sebesar:
             </p>
             <p v-if="categoryId == 4 || categoryId == 8">
-              Apakah kamu bersedia beralih dari menggunakan mobil/motor pribadi menjadi pesawat dengan rute tersebut dan biaya tiket seharga:
+              Apakah anda bersedia beralih dari menggunakan mobil/motor pribadi menjadi pesawat dengan rute tersebut dan biaya tiket seharga:
             </p>
             <div class="text-center">
 

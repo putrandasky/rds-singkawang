@@ -26,7 +26,7 @@
         <b-card class="shadow-sm mb-3">
           <div>
             <p>
-              Berapa alokasi rata-rata biaya transportasi kamu per bulan?
+              Berapa alokasi rata-rata biaya transportasi anda per bulan?
             </p>
             <vue-slider v-model="input.avg_transportation_cost" :height="6" :min="0" :max="100" :interval="1" :tooltip-formatter="sliderTooltipFormat">
               <!-- <template v-slot:mark="{ pos, label }">
@@ -56,19 +56,19 @@
       </b-col>
       <card-survey v-if="step == 6" action="Lanjut" :options="options.vehicle" @onNext="nextStep(7,30)" @onChange="input.vehicle = $event">
         <template v-slot:question>
-          Apa kendaraan yang kamu punya?
+          Apa kendaraan yang punya?
         </template>
       </card-survey>
       <card-survey v-if="step == 7" action="Lanjut" :options="options.is_singkawang_domicile" @onNext="nextStep(8,35)" @onChange="input.is_singkawang_domicile = $event">
         <template v-slot:question>
-          Apakah kamu berdomisili di Singkawang dan sekitarnya?
+          Apakah anda berdomisili di Singkawang dan sekitarnya?
         </template>
       </card-survey>
       <b-col v-if="step == 8" lg="4" md="6" sm="8">
         <b-card class="shadow-sm mb-3">
           <div>
             <p>
-              Dimana kota domisili kamu saat ini?
+              Dimana kota domisili anda saat ini?
             </p>
             <b-form-group label="Provinsi">
               <b-form-select @input="getRegencies($event)" stacked :options="options.domicile_province" v-model="input.domicile_province" button-variant="outline-warning" buttons class="btn-block">
