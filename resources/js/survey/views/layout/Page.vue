@@ -17,7 +17,7 @@
     <div class="bg-warning w-100 d-flex align-items-center mt-auto" style="height:60px">
       <b-container>
         <div class="text-md-right text-center ">
-          <b-img fluid src="/img/icon-kpmg-aecom.svg"></b-img>
+          <b-img fluid src="/img/icon-aecom-kpmg.svg"></b-img>
 
         </div>
       </b-container>
