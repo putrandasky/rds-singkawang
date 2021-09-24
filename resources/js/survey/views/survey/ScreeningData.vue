@@ -1,11 +1,11 @@
 <template>
-  <div class="full-bg-survey bg-survey d-flex justify-content-center py-3">
+  <div class="d-flex justify-content-center py-3">
 
     <b-col v-if="step == 1" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>
           <p>
-            Sebelum adanya pandemic Covid 19, Dalam satu tahun, berapa kali anda melakukan perjalanan menggunakan pesawat?
+            <b>Sebelum adanya pandemic Covid 19</b>, Dalam satu tahun, berapa kali anda melakukan perjalanan menggunakan pesawat?
           </p>
           <vue-slider v-model="input.travel_frequence" :height="6" :min="0" :max="365" :interval="1" />
 
@@ -41,7 +41,10 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d685971.4485784924!2d109.17237850745909!3d0.8318165792914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1632024069947!5m2!1sid!2sid" class="travel-map-mymap" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         <b-card-body>
           <p>
-            Sebelum adanya pandemic Covid 19, pernahkan anda bepergian dari atau menuju Kota Singkawang dan sekitarnya?
+            <b>Sebelum adanya pandemic Covid 19</b>, pernahkan anda bepergian
+            <span v-if="is_singkawang_domicile == 1">dari</span>
+            <span v-if="is_singkawang_domicile == 0">menuju</span>
+            Kota Singkawang dan sekitarnya?
           </p>
           <b-form-radio-group stacked v-model="input.singkawang_related" button-variant="outline-warning" buttons class="btn-block">
             <b-form-radio v-if="is_singkawang_domicile == 1" :value="1">Pernah/sering bepergian dari Singkawang</b-form-radio>
@@ -59,7 +62,10 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d685971.4485784924!2d109.17237850745909!3d0.8318165792914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1632024069947!5m2!1sid!2sid" class="travel-map-mymap" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         <b-card-body>
           <p>
-            Di waktu yang mendatang, akankah anda berpotensi bepergian dari atau menuju Kota Singkawang dan sekitarnya?
+            Di waktu yang mendatang, akankah anda berpotensi bepergian
+            <span v-if="is_singkawang_domicile == 1">dari</span>
+            <span v-if="is_singkawang_domicile == 0">menuju</span>
+            Kota Singkawang dan sekitarnya?
           </p>
           <b-form-radio-group stacked v-model="input.singkawang_related_potentially" button-variant="outline-warning" buttons class="btn-block">
             <b-form-radio v-if="is_singkawang_domicile == 1" :value="1">akan bepergian dari Singkawang</b-form-radio>

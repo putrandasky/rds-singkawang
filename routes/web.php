@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Survey\AuthController;
+use App\Http\Controllers\Survey\DashboardController;
 use App\Http\Controllers\Survey\RegionController;
 use App\Http\Controllers\Survey\SurveyController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::post('respondent/survey/personal-data', [SurveyController::class, 'storeP
 Route::get('respondent/survey/personal-data', [SurveyController::class, 'getPersonalData']);
 Route::get('respondent/survey/personal-data', [SurveyController::class, 'getPersonalData']);
 Route::get('region/province/{province_id}', [RegionController::class, 'getRegencies']);
+Route::get('dashboard/index', [DashboardController::class, 'index']);
 
 Route::get('/{vue_capture?}', function () {
     return View::make('app.survey');

@@ -10,4 +10,8 @@ class Job extends Model
     public $timestamps = false;
 
     use HasFactory;
+    public function respondents()
+    {
+        return $this->hasMany(Respondent::class);
+    }
 }

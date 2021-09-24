@@ -1,5 +1,5 @@
 <template>
-  <div class="full-bg-survey bg-survey d-flex justify-content-center py-3">
+  <div class="d-flex justify-content-center py-3">
     <b-col v-if="step == 1" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>

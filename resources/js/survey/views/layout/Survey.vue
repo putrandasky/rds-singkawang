@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="full-bg-survey bg-survey ">
     <b-overlay variant="dark" :show="$store.state.isLoading" blur="" fixed no-wrap></b-overlay>
 
     <!-- <loading class="text-center" :active.sync="$store.state.isLoading" :can-cancel="false" :opacity="0.9" :height="60" loader="dots" transition="fade" background-color="rgba(0,0,0,.85)" color="rgba(255,255,255,.9)" :is-full-page="true">
@@ -8,7 +8,7 @@
       </div>
     </loading> -->
     <b-container class="text-center py-3">
-      <b-img fluid src="/img/icon-kemenhub-ptpii.svg"></b-img>
+      <b-img fluid src="/img/icon-ptpii-kemenhub.svg"></b-img>
     </b-container>
     <b-container fluid class="text-center py-3 bg-primary text-white">
       <div class="h4 ">

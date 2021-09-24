@@ -1,3 +1,10 @@
+# 24 Sept 21
+## 1.5
+### ADDED
+- Dynamic State "Menuju" & "Dari" for singkawang related question and SP Question
+- Note for SP B1 and B2
+### CHANGED
+- Change footer image background in survey page
 # 22 Sept 21
 ## 1.4.1
 ### REVISED

@@ -1,12 +1,15 @@
 <template>
-  <div class="full-bg-survey bg-survey d-flex justify-content-center py-3">
-    <b-col lg="4" md="6" sm="8">
+  <div class="d-flex justify-content-center py-3">
+    <b-col v-if="!isLoading" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>
           <div>
 
-            <p>
+            <p v-if="is_singkawang_domicile == 1">
               Kalau anda bepergian dari Kota Singkawang dan sekitarnya menuju Kota <b>{{city.description}}</b> dapat menggunakan rute pesawat langsung Singkawang – <b>{{city.airport}}</b>, dengan waktu penerbangan
+            </p>
+            <p v-if="is_singkawang_domicile == 0">
+              Kalau anda bepergian dari Kota anda saat ini <b>{{city.description}}</b> menuju kota Singkawang dan sekitarnya dapat menggunakan rute pesawat langsung <b>{{city.airport}}</b> - Singkawang, dengan waktu penerbangan
             </p>
             <div class="text-center">
               <p>
@@ -47,6 +50,22 @@
                   </transition>
                 </b>
               </p>
+
+            </div>
+            <div v-if="categoryId == 2 ||  categoryId == 6">
+              <small>
+                <em>
+                  *Asumsi: perjalanan ferry per orang per rute, tanpa membawa mobil
+
+                  <span v-if="is_singkawang_domicile == 1">
+                    menuju
+                  </span>
+                  <span v-if="is_singkawang_domicile == 0">
+                    dari
+                  </span>
+                  DKI Jakarta (harga tiket ferry ± Rp 275.000)
+                </em>
+              </small>
             </div>
             <div class="w-100" role="group">
             </div>
@@ -78,7 +97,9 @@
     MethodsSurvey
   } from '../../mixins/Survey.js'
   import animationData from "../../asset/checked_blue_yellow.js";
-
+  import {
+    mapState,
+  } from 'vuex'
   export default {
     name: 'SurveyPreference',
     mixins: [
@@ -95,6 +116,7 @@
         },
         animationSpeed: 1,
         modalComplete: false,
+        isLoading: false,
         city: {
           description: '',
           airport: ''
@@ -138,6 +160,12 @@
           self.currentData.costState = self.costs[newVal - 1];
         }
       }
+    },
+    computed: {
+      ...mapState({
+        is_singkawang_domicile: state => state.respondent.is_singkawang_domicile,
+
+      })
     },
     methods: {
       handleAnimation: function(anim) {
@@ -192,6 +220,8 @@
         // console.table(this.stateDataCollection.data);
       },
       getPreferences() {
+        this.isLoading = true;
+
         axios.get(`/respondent/survey/preferences-data?token=${this.$route.query.token}`)
           .then((response) => {
             console.log(response.data)
@@ -201,6 +231,8 @@
             this.categoryId = response.data.category_id
             this.timeIndex = 1
             this.costIndex = 1
+            this.isLoading = false;
+
           })
           .catch((error) => {
             console.log(error);

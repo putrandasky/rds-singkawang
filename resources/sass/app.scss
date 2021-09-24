@@ -141,14 +141,14 @@
 }
 
 .full-bg-survey {
-  min-height: 70vh;
+  min-height: 100vh;
   height: auto;
-  background-position: left top;
-  background-repeat: repeat-x;
-  background-size: auto;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 
   &.bg-survey {
-    background-image: url(/img/bg-survey.svg);
+    background-image: url(/img/bg-airport-frameless.svg);
   }
 }
 

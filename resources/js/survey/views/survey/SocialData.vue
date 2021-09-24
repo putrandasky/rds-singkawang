@@ -1,5 +1,5 @@
 <template>
-  <div class="full-bg-survey bg-survey">
+  <div class="">
     <div v-if="!isLoading" class=" d-flex justify-content-center py-3">
 
       <card-survey v-if="step == 1" action="Lanjut" :options="options.gender" @onNext="nextStep(2,5)" @onChange="input.gender = $event">
