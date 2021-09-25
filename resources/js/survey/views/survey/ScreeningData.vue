@@ -1,40 +1,36 @@
 <template>
   <div class="d-flex justify-content-center py-3">
-
-    <b-col v-if="step == 1" lg="4" md="6" sm="8">
-      <b-card class="shadow-sm mb-3">
-        <div>
-          <p>
-            <b>Sebelum adanya pandemic Covid 19</b>, Dalam satu tahun, berapa kali anda melakukan perjalanan menggunakan pesawat?
-          </p>
-          <vue-slider v-model="input.travel_frequence" :height="6" :min="0" :max="365" :interval="1" />
-
-        </div>
-      </b-card>
-      <b-btn variant="primary" class="font-weight-bold" block @click="nextStep(2,43)">Lanjut</b-btn>
-    </b-col>
-    <b-col v-if="step == 2 " lg="4" md="6" sm="8">
-      <b-card class="shadow-sm mb-3">
-        <div>
-          <p>
-            Berapa alokasi rata-rata biaya <b>transportasi udara</b> untuk tiap perjalanan pada pertanyaan sebelumnya?
-          </p>
-          <vue-slider v-model="input.avg_airplane_transportation_cost" :height="6" :min="0" :max="100" :interval="1" :tooltip-formatter="sliderTooltipFormat">
-
-          </vue-slider>
-          <div class="text-center">
-            <span v-if="income.max == null">≤</span>
-            <span v-if="income.min != null"> Rp. {{income.min * input.avg_airplane_transportation_cost/100 | currency}}</span>
-
-            <span v-if="income.min != null && income.max != null"> - </span>
-            <span v-if="income.min == null">></span>
-
-            <span v-if="income.max != null"> Rp. {{income.max * input.avg_airplane_transportation_cost/100 | currency}}</span>
+    <card-survey-slider v-if="step == 1" :step="step" action="Lanjut" :height="6" :min="0" :max="200" :interval="1" :input="input.travel_frequence" @onChange="input.travel_frequence = $event" @onNext="nextStep(2)">
+      <template v-slot:question>
+        <b>Sebelum adanya pandemic Covid 19</b>, Dalam satu tahun, berapa kali anda melakukan perjalanan menggunakan pesawat?
+      </template>
+      <template v-slot:info>
+        <div v-show="input.travel_frequence != null">
+          <div v-if="input.travel_frequence == 0">
+            Tidak pernah menggunakan pesawat dalam setahun
+          </div>
+          <div v-else>
+            Menggunakan pesawat {{input.travel_frequence}} kali dalam setahun
           </div>
         </div>
-      </b-card>
-      <b-btn v-if="input.avg_airplane_transportation_cost !=null" variant="primary" class="font-weight-bold" block @click="nextStep(3,46)">Lanjut</b-btn>
-    </b-col>
+      </template>
+    </card-survey-slider>
+    <card-survey-slider v-if="step == 2" action="Lanjut" :height="6" :min="0" :max="100" :interval="1" :sliderTooltipFormat="'{value}%'" :input="input.avg_airplane_transportation_cost" @onChange="input.avg_airplane_transportation_cost = $event" @onBack="backStep(1)" @onNext="nextStep(3)">
+      <template v-slot:question>
+        Berapa alokasi rata-rata biaya <b>transportasi udara</b> untuk tiap perjalanan pada pertanyaan sebelumnya?
+      </template>
+      <template v-slot:info>
+        <span v-if="income.max == null">≤</span>
+        <span v-if="income.min != null"> Rp. {{income.min * input.avg_airplane_transportation_cost/100 | currency}}</span>
+
+        <span v-if="income.min != null && income.max != null"> - </span>
+        <span v-if="income.min == null">></span>
+
+        <span v-if="income.max != null"> Rp. {{income.max * input.avg_airplane_transportation_cost/100 | currency}}</span>
+      </template>
+    </card-survey-slider>
+
+
     <b-col v-if="step == 3" lg="4" md="6" sm="8">
       <b-card no-body class="shadow-sm mb-3">
         <!-- <iframe class="travel-map-mymap p-0" :src="selectedData.src" style="position:relative; top:-55px; border:none;margin-bottom:-60px"></iframe> -->
@@ -44,7 +40,7 @@
             <b>Sebelum adanya pandemic Covid 19</b>, pernahkan anda bepergian
             <span v-if="is_singkawang_domicile == 1">dari</span>
             <span v-if="is_singkawang_domicile == 0">menuju</span>
-            Kota Singkawang dan sekitarnya?
+            Kota Singkawang dan sekitarnya (Kabupaten Bengkayang, Sambas dan Mempawah)?
           </p>
           <b-form-radio-group stacked v-model="input.singkawang_related" button-variant="outline-warning" buttons class="btn-block">
             <b-form-radio v-if="is_singkawang_domicile == 1" :value="1">Pernah/sering bepergian dari Singkawang</b-form-radio>
@@ -54,7 +50,13 @@
 
         </b-card-body>
       </b-card>
-      <b-btn v-if="input.singkawang_related != null" variant="primary" class="font-weight-bold" block @click="nextStep(4,48)">Lanjut</b-btn>
+      <div>
+
+        <b-btn variant="outline-secondary" @click="backStep(2)">
+          <i class="ri-arrow-left-circle-line align-middle"></i> Kembali
+        </b-btn>
+        <b-btn v-if="input.singkawang_related != null" variant="primary" class="font-weight-bold float-right" @click="nextStep(4)">Lanjut</b-btn>
+      </div>
     </b-col>
     <b-col v-if="step == 4" lg="4" md="6" sm="8">
       <b-card no-body class="shadow-sm mb-3">
@@ -65,7 +67,7 @@
             Di waktu yang mendatang, akankah anda berpotensi bepergian
             <span v-if="is_singkawang_domicile == 1">dari</span>
             <span v-if="is_singkawang_domicile == 0">menuju</span>
-            Kota Singkawang dan sekitarnya?
+            Kota Singkawang dan sekitarnya (Kabupaten Bengkayang, Sambas dan Mempawah)?
           </p>
           <b-form-radio-group stacked v-model="input.singkawang_related_potentially" button-variant="outline-warning" buttons class="btn-block">
             <b-form-radio v-if="is_singkawang_domicile == 1" :value="1">akan bepergian dari Singkawang</b-form-radio>
@@ -75,7 +77,12 @@
 
         </b-card-body>
       </b-card>
-      <b-btn v-if="input.singkawang_related_potentially != null" variant="primary" class="font-weight-bold" block @click="submit">Lanjut</b-btn>
+      <div>
+        <b-btn variant="outline-secondary" @click="backStep(3)">
+          <i class="ri-arrow-left-circle-line align-middle"></i> Kembali
+        </b-btn>
+        <b-btn v-if="input.singkawang_related_potentially != null" variant="primary" class="font-weight-bold float-right" @click="submit">Lanjut</b-btn>
+      </div>
     </b-col>
   </div>
 </template>
@@ -89,6 +96,7 @@
   import {
     MethodsSurvey
   } from '../../mixins/Survey.js'
+  import CardSurveySlider from '../../components/CardSurveySlider.vue'
 
   export default {
     name: 'ScreeningData',
@@ -96,6 +104,9 @@
       AuthRespondent,
       MethodsSurvey
     ],
+    components: {
+      CardSurveySlider
+    },
     props: ["routerData"],
 
     data: function() {
@@ -104,8 +115,10 @@
         srcMap: "https://www.google.com/maps/d/embed?mid=1htfGOJfkOLbEf-lGl5fMDCPWA0j1krpW&ll=-6.185622133940079%2C106.82362947503714&z=11",
         step: 1,
         sliderTooltipFormat: '{value}%',
+        stepProgress: [43, 45, 48],
+
         input: {
-          travel_frequence: 0,
+          travel_frequence: null,
           avg_airplane_transportation_cost: null,
           singkawang_related: null,
           singkawang_related_potentially: null,
@@ -114,6 +127,7 @@
     },
     created() {
       this.$emit("childinit", this.routerData);
+      this.stepProgress.unshift(this.routerData.progress)
 
     },
     watch: {
@@ -144,7 +158,15 @@
           }
         });
       },
-      nextStep(step, progressData) {
+      backStep(step) {
+        let newStep = step
+        if (newStep == 2) {
+          this.is_singkawang_domicile == 1 ? null : newStep = 1
+        }
+        this.step = newStep
+        this.emitProgress(newStep)
+      },
+      nextStep(step) {
         let newStep = step
         if (newStep == 2) {
           this.is_singkawang_domicile == 1 ? null : newStep = 3
@@ -156,12 +178,7 @@
           }
         }
         this.step = newStep
-
-        let data = {
-          progress: progressData
-        }
-        this.$emit("childinit", data);
-
+        this.emitProgress(newStep)
       },
       submit() {
         // setTimeout(() => {

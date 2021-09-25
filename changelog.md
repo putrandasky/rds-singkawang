@@ -1,3 +1,12 @@
+# 26 Sept 21
+## 1.7
+### FIXED
+- Clean AECOM and KPMG Logo
+### CHANGE
+- Max value for travel frequence
+### ADDED
+- Information for "sekitar singkawang"
+- Previous button function
 # 24 Sept 21
 ## 1.5
 ### ADDED

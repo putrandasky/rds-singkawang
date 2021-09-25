@@ -12,12 +12,16 @@ export const MethodsSurvey = {
         }
       });
     },
-    nextStep(step, progressData) {
+    backStep(step) {
       this.step = step
-      let data = {
-        progress: progressData
-      }
-      this.$emit("childinit", data);
+      this.emitProgress(step)
+
+
+    },
+    nextStep(step) {
+      this.step = step
+      this.emitProgress(step)
+
 
     },
     mutateKey(data) {
@@ -29,6 +33,13 @@ export const MethodsSurvey = {
         };
       });
       return mutateData;
+    },
+    emitProgress(step) {
+      this.step = step
+
+      this.$emit("childinit", {
+        progress: this.stepProgress[step - 1]
+      });
     }
   }
 };

@@ -14,7 +14,10 @@
           </b-form-select>
         </div>
       </b-card>
-      <b-btn variant="primary" class="font-weight-bold" block @click="nextStep(2,55)" v-if="input.city != null">Lanjut</b-btn>
+      <div>
+
+        <b-btn variant="primary" class="font-weight-bold float-right" @click="nextStep(2)" v-if="input.city != null">Lanjut</b-btn>
+      </div>
 
     </b-col>
     <b-col v-if="step == 2" lg="4" md="6" sm="8">
@@ -30,21 +33,28 @@
           </b-form-group>
         </div>
       </b-card>
-      <b-btn v-if="input.travel_purpose != null" variant="primary" class="font-weight-bold" block @click="nextStep(3,58)">Lanjut</b-btn>
+      <div>
+        <b-btn variant="outline-secondary" @click="backStep(1)">
+          <i class="ri-arrow-left-circle-line align-middle"></i> Kembali
+        </b-btn>
+        <b-btn v-if="input.travel_purpose != null" variant="primary" class="font-weight-bold float-right" @click="nextStep(3)">Lanjut</b-btn>
+      </div>
     </b-col>
-    <b-col v-if="step == 3 " lg="4" md="6" sm="8">
-      <b-card class="shadow-sm mb-3">
-        <div>
-          <p>
-            Dalam satu tahun, berapa kali anda melakukan perjalanan pada pertanyaan sebelumnya?
-          </p>
-          <vue-slider v-model="input.travel_city_frequence" :height="6" :min="0" :max="365" :interval="1">
-
-          </vue-slider>
+    <card-survey-slider v-if="step == 3" :step="step" action="Lanjut" :height="6" :min="0" :max="200" :interval="1" :input="input.travel_city_frequence" @onChange="input.travel_city_frequence = $event" @onBack="backStep(2)" @onNext="nextStep(4)">
+      <template v-slot:question>
+        Dalam satu tahun, berapa kali anda melakukan perjalanan pada pertanyaan sebelumnya?
+      </template>
+      <template v-slot:info>
+        <div v-show="input.travel_city_frequence != null">
+          <div v-if="input.travel_city_frequence == 0">
+            Tidak pernah melakukan perjalanan tersebut dalam setahun
+          </div>
+          <div v-else>
+            Melakukan perjalanan tersebut {{input.travel_city_frequence}} kali dalam setahun
+          </div>
         </div>
-      </b-card>
-      <b-btn v-if="input.travel_city_frequence !=null" variant="primary" class="font-weight-bold" block @click="nextStep(4,60)">Lanjut</b-btn>
-    </b-col>
+      </template>
+    </card-survey-slider>
     <b-col v-if="step == 4" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>
@@ -104,10 +114,11 @@
 
             <div class="text-center">
 
-              <b-button variant="secondary" @click="back(i)" v-if=" i > 0">Kembali</b-button>
+              <b-button variant="outline-secondary" @click="back(i)">Kembali</b-button>
               <span v-if="v.destination != '' &&v.transportation_mode_id >0 && v.cost > 0 && v.duration_minutes != null && v.duration_hours != null ">
+
                 <b-button variant="warning" @click="addTripDetail">Tambah Tujuan</b-button>
-                <b-button variant="primary" @click="nextStep(5,65)">Lanjut</b-button>
+                <b-button variant="primary" @click="nextStep(5)">Lanjut</b-button>
               </span>
             </div>
           </div>
@@ -128,12 +139,19 @@
           </div>
         </div>
       </b-card>
-      <b-btn v-if="input.avg_trip_cost != null" variant="primary" class="font-weight-bold" block @click="submit">Kirim</b-btn>
+      <div>
+
+        <b-btn variant="outline-secondary" @click="backStep(4)">
+          <i class="ri-arrow-left-circle-line align-middle"></i> Kembali
+        </b-btn>
+        <b-btn v-if="input.avg_trip_cost != null" variant="primary" class="font-weight-bold float-right" @click="submit">Kirim</b-btn>
+      </div>
     </b-col>
   </div>
 </template>
 <script>
   import CardSurvey from '../../components/CardSurvey.vue'
+  import CardSurveySlider from '../../components/CardSurveySlider.vue'
   import {
     mapState,
   } from 'vuex'
@@ -146,7 +164,10 @@
   export default {
     name: 'TravelData',
     components: {
-      CardSurvey
+      CardSurvey,
+      CardSurveySlider
+
+
     },
     mixins: [
       AuthRespondent,
@@ -162,6 +183,8 @@
           travel_purpose: [],
           transportation_mode: []
         },
+        stepProgress: [55, 60, 65, 70],
+
         input: {
           city: null,
           travel_purpose: null,
@@ -182,6 +205,7 @@
     created() {
       this.getData()
       this.$emit("childinit", this.routerData);
+      this.stepProgress.unshift(this.routerData.progress)
 
     },
     watch: {
@@ -191,6 +215,7 @@
     },
     computed: {
       ...mapState({
+        is_singkawang_domicile: state => state.respondent.is_singkawang_domicile,
         singkawang_related: state => state.respondent.singkawang_related,
         singkawang_related_potentially: state => state.respondent.singkawang_related_potentially,
 
@@ -206,6 +231,7 @@
           }
         });
       },
+
       submit() {
         // setTimeout(() => {
         // this.$store.dispatch("isLoading", false);
@@ -230,6 +256,19 @@
           });
       },
       back(i) {
+        if (i == 0) {
+          let step = this.step - 1
+          this.emitProgress(step)
+          this.input.multi_trip = [{
+            transportation_mode_id: null,
+            transportation_mode_others: '',
+            duration_hours: null,
+            duration_minutes: null,
+            destination: '',
+            cost: null
+          }]
+          return
+        }
         this.input.multi_trip.splice(i, 1);
       },
       addTripDetail() {
@@ -253,7 +292,21 @@
         axios
           .get(`/respondent/survey/travel-data`)
           .then(response => {
-            this.options.city = this.mutateKey(response.data.city);
+            let city = this.mutateKey(response.data.city);
+            this.options.city = city;
+
+            console.log(this.is_singkawang_domicile);
+            if (this.is_singkawang_domicile == 1) {
+
+              this.options.city = []
+              console.log(this.options.city);
+
+              for (let i = 0; i < 2; i++) {
+                this.options.city.push(city[i]);
+
+              }
+              console.log(this.options.city);
+            }
             this.options.transportation_mode = this.mutateKey(response.data.transportation_mode);
             this.options.travel_purpose = this.mutateKey(response.data.travel_purpose);
 
