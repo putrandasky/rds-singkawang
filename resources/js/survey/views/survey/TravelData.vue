@@ -55,78 +55,115 @@
         </div>
       </template>
     </card-survey-slider>
-    <b-col v-if="step == 4" lg="4" md="6" sm="8">
-      <b-card class="shadow-sm mb-3">
-        <div>
-          <p>
-            Bagaimana biasanya anda melakukan perjalanan tersebut? Sebutkan kendaraan apa saja yang anda gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya
-          </p>
-          <div v-for="(v,i) in input.multi_trip" :key="i" v-show="input.multi_trip.length == (i + 1)">
-            <div class="text-center mb-2">
+    <b-col v-if="step == 4" col="12">
+      <b-row class="justify-content-center">
+        <b-col v-if="step == 4" lg="4" md="6" sm="8">
+          <b-card no-body class="shadow-sm w-100 px-0  overflow-hidden">
+            <div class="card-body" style="max-height:300px;overflow-y:auto">
+              <ul class="timeline">
+
+                <li v-for="(v,i) in input.multi_trip" :key="i">
+                  <div class="tl-icon">{{i}}</div>
+                  <strong v-if="i == 0">Asal : {{origin()}}</strong>
+                  <strong v-if="i !== 0">Pemberhentian ke-{{i}}</strong>
+                  <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
+                  <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
+                  <div>Moda : {{findModeTransport(v.transportation_mode_id)}}</div>
+                </li>
+                <li>
+                  <div class="tl-icon">{{input.multi_trip.length }}</div>
+                  <strong>Ke : {{destination()}}</strong>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <small>
+                <em>
+                  nb: Tekan "Lanjut", jika tujuan ke {{input.multi_trip.length }} adalah akhir tujuan anda ({{destination()}})
+                </em>
+              </small>
+            </div>
+          </b-card>
+        </b-col>
+        <b-col v-if="step == 4" lg="4" md="6" sm="8">
+          <b-card class="shadow-sm mb-3">
+            <div>
+              <p class="mb-1">
+                Bagaimana biasanya anda melakukan perjalanan dari <strong>{{origin()}}</strong> ke <strong>{{destination()}}</strong> ?
+              </p>
+              <p class="mb-1">
+                Mohon sebutkan dan detailkan kendaraan apa saja yang anda gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya.
+              </p>
+              <small>Contoh: Biasanya sebelum sampai bandara, calon penumpang menggunakan moda transportasi darat terlebih dahulu seperti (bus, mobil, atau motor)</small>
+              <div v-for="(v,i) in input.multi_trip" :key="i" v-show="input.multi_trip.length == (i + 1)">
+                <!-- <div class="text-center mb-2">
               <b v-if="i == 0">
                 Dari Tempat Asal menuju Tujuan ke-{{i+1}}
               </b>
               <b v-if="i >0">
                 Dari Tujuan ke-{{i}} menuju Tujuan ke-{{i+1}}
               </b>
-            </div>
-            <b-form-group :label="`Tujuan ke-${i+1}`">
+            </div> -->
+                <b-form-group :label="`Tujuan ke-${i+1}`">
 
-              <b-form-input v-model="v.destination" trim placeholder="Bandara Supadio, Pelabuhan Pontianak, Terminal Kp Melayu"></b-form-input>
-            </b-form-group>
-
-            <b-row>
-              <b-col cols="12">
-                <b-form-group label="Durasi Perjalanan">
-
-                  <b-input-group>
-                    <b-form-select plain v-model="v.duration_hours">
-                      <option :value="null" disabled>Pilih Jam</option>
-                      <option v-for="n in 25" :value="n-1" :key="`duration_hours_${n}`">{{n-1}} jam</option>
-                    </b-form-select>
-                    <b-input-group-prepend is-text>
-                      dan
-                    </b-input-group-prepend>
-                    <b-form-select plain v-model="v.duration_minutes">
-                      <option :value="null" disabled>Pilih Menit</option>
-                      <option v-for="n in 61" :value="n-1" :key="`duration_minutes_${n}`">
-                        {{n-1}} menit
-                      </option>
-                    </b-form-select>
-                  </b-input-group>
+                  <b-form-input v-model="v.destination" trim placeholder="Bandara Supadio, Pelabuhan Pontianak, Terminal Kp Melayu"></b-form-input>
                 </b-form-group>
-              </b-col>
-            </b-row>
-            <b-form-group label="Biaya Perjalanan">
-              <vue-slider v-model="v.cost" :height="6" :tooltip-formatter="currencyTooltipFormatter" :min="0" :max="3000000" :interval="10000" />
 
-            </b-form-group>
-            <b-form-group label="Moda transportasi">
+                <b-row>
+                  <b-col cols="12">
+                    <b-form-group label="Durasi Perjalanan">
 
-              <b-form-select stacked :options="options.transportation_mode" v-model="v.transportation_mode_id" button-variant="outline-warning" buttons class="btn-block" @change="transportationModeTriggered(i)">
-                <option :value="null" disabled>-- Pilih Moda Transportasi --</option>
+                      <b-input-group>
+                        <b-form-select plain v-model="v.duration_hours">
+                          <option :value="null" disabled>Pilih Jam</option>
+                          <option v-for="n in 25" :value="n-1" :key="`duration_hours_${n}`">{{n-1}} jam</option>
+                        </b-form-select>
+                        <b-input-group-prepend is-text>
+                          dan
+                        </b-input-group-prepend>
+                        <b-form-select plain v-model="v.duration_minutes">
+                          <option :value="null" disabled>Pilih Menit</option>
+                          <option v-for="n in 61" :value="n-1" :key="`duration_minutes_${n}`">
+                            {{n-1}} menit
+                          </option>
+                        </b-form-select>
+                      </b-input-group>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
+                <b-form-group label="Biaya Perjalanan">
+                  <vue-slider v-model="v.cost" :height="6" :tooltip-formatter="currencyTooltipFormatter" :min="0" :max="3000000" :interval="10000" />
 
-              </b-form-select>
-            </b-form-group>
-            <b-form-group v-if="v.transportation_mode_id == 6" label="Tulis moda transportasi lainnya" label-for="transportation_mode_others">
-              <b-form-input id="transportation_mode_others" v-model="v.transportation_mode_others" trim></b-form-input>
-            </b-form-group>
+                </b-form-group>
+                <b-form-group label="Moda transportasi">
 
-            <div class="text-center">
+                  <b-form-select stacked :options="options.transportation_mode" v-model="v.transportation_mode_id" button-variant="outline-warning" buttons class="btn-block" @change="transportationModeTriggered(i)">
+                    <option :value="null" disabled>-- Pilih Moda Transportasi --</option>
 
-              <b-button variant="outline-secondary" @click="back(i)">Kembali</b-button>
-              <span v-if="v.destination != '' &&v.transportation_mode_id >0 && v.cost > 0 && v.duration_minutes != null && v.duration_hours != null ">
+                  </b-form-select>
+                </b-form-group>
+                <b-form-group v-if="v.transportation_mode_id == 6" label="Tulis moda transportasi lainnya" label-for="transportation_mode_others">
+                  <b-form-input id="transportation_mode_others" v-model="v.transportation_mode_others" trim></b-form-input>
+                </b-form-group>
 
-                <b-button variant="warning" @click="addTripDetail">Tambah Tujuan</b-button>
-                <b-button variant="primary" @click="nextStep(5)">Lanjut</b-button>
-              </span>
+                <div class="text-center">
+
+                  <b-button variant="outline-secondary" @click="back(i)">Kembali</b-button>
+                  <span v-if="v.destination != '' &&v.transportation_mode_id >0 && v.cost > 0 && v.duration_minutes != null && v.duration_hours != null ">
+
+                    <b-button variant="warning" @click="addTripDetail">Tambah Tujuan</b-button>
+                    <b-button variant="primary" @click="nextStep(5)">Lanjut</b-button>
+                  </span>
+                </div>
+              </div>
+
             </div>
-          </div>
+          </b-card>
 
-        </div>
-      </b-card>
-
+        </b-col>
+      </b-row>
     </b-col>
+
     <b-col v-if="step == 5" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>
@@ -223,6 +260,25 @@
       })
     },
     methods: {
+      origin() {
+        return (this.singkawang_related == 1 || this.singkawang_related_potentially == 1) ? 'Singkawang dan Sekitarnya' :
+          (this.singkawang_related == 2 || this.singkawang_related_potentially == 2) ? this.findCityName() : null
+      },
+      destination() {
+        return (this.singkawang_related == 1 || this.singkawang_related_potentially == 1) ? this.findCityName() :
+          (this.singkawang_related == 2 || this.singkawang_related_potentially == 2) ? 'Singkawang dan Sekitarnya' : null
+      },
+      findCityName() {
+        let getCityData = this.options.city.find(city => city.id == this.city)
+        return getCityData.text
+      },
+      findModeTransport(id) {
+        if (id) {
+
+          let mode = this.options.transportation_mode.find(mode => mode.value == id).text
+          return mode
+        }
+      },
       handleNext(token, routeName) {
         this.$router.replace({
           name: routeName,
@@ -295,18 +351,18 @@
             let city = this.mutateKey(response.data.city);
             this.options.city = city;
 
-            console.log(this.is_singkawang_domicile);
-            if (this.is_singkawang_domicile == 1) {
+            // console.log(this.is_singkawang_domicile);
+            // if (this.is_singkawang_domicile == 1) {
 
-              this.options.city = []
-              console.log(this.options.city);
+            //   this.options.city = []
+            //   console.log(this.options.city);
 
-              for (let i = 0; i < 2; i++) {
-                this.options.city.push(city[i]);
+            //   for (let i = 0; i < 2; i++) {
+            //     this.options.city.push(city[i]);
 
-              }
-              console.log(this.options.city);
-            }
+            //   }
+            //   console.log(this.options.city);
+            // }
             this.options.transportation_mode = this.mutateKey(response.data.transportation_mode);
             this.options.travel_purpose = this.mutateKey(response.data.travel_purpose);
 
@@ -329,4 +385,5 @@
   }
 </script>
 <style>
+
 </style>

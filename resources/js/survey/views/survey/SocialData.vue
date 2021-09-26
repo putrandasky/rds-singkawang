@@ -52,7 +52,7 @@
               Dimana kota domisili anda saat ini?
             </p>
             <b-form-group label="Provinsi">
-              <b-form-select @input="getRegencies($event)" stacked :options="options.domicile_province" v-model="input.domicile_province" button-variant="outline-warning" buttons class="btn-block">
+              <b-form-select @input="getRegencies($event)" stacked :options="getProvince" v-model="input.domicile_province" button-variant="outline-warning" buttons class="btn-block">
                 <template slot="first">
                   <option :value="null" disabled>-- Pilih Provinsi --</option>
                 </template>
@@ -183,6 +183,14 @@
 
       }
     },
+    computed: {
+      getProvince() {
+        if (this.input.is_singkawang_domicile == 1) {
+          return this.options.domicile_province.filter(data => data.value == 61)
+        }
+        return this.options.domicile_province
+      }
+    },
     methods: {
 
       submit() {
@@ -238,12 +246,14 @@
             this.options.job = this.mutateKey(response.data.job);
             this.options.income = this.mutateKey(response.data.income);
             this.options.domicile_province = this.mutateKey(response.data.province);
+
             this.options.vehicle = this.mutateKey(
               response.data.vehicle
             );
             this.income.options = response.data.income
             // this.income.selected = this.income.options.filter(income => income.id == 6)
             // console.log(this.income.selected);
+            console.log(this.options.domicile_province.find(data => data.value == 61));
             setTimeout(() => {
               this.isLoading = false;
 

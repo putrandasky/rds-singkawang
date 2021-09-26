@@ -18,7 +18,7 @@ export const store = new Vuex.Store({
       is_singkawang_domicile: null,
       singkawang_related: null,
       singkawang_related_potentially: null,
-      city_id: null,
+      city: '',
       category_id: null,
       income: {
         min: 0,
@@ -40,7 +40,7 @@ export const store = new Vuex.Store({
       state.respondent.step = n.step;
       state.respondent.income.min = n.income.min;
       state.respondent.income.max = n.income.max;
-      state.respondent.city_id = n.city_id;
+      state.respondent.city = n.city;
       state.respondent.category_id = n.category_id;
     },
     [ISLOADING](state, n) {
@@ -75,7 +75,7 @@ export const store = new Vuex.Store({
           min: creds.income.min,
           max: creds.income.max
         },
-        city_id: creds.city_id,
+        city: creds.city,
         category_id: creds.category_id,
         // transportation_mode_id: creds.transportation_mode_id,
       }

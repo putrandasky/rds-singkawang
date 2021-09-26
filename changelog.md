@@ -1,3 +1,9 @@
+# 27 Sept 21
+## 1.8
+### FIXED
+- Kalimantan barat option only if singkawang dan sekitarnya
+### ADDED
+- Travel simulation for multi trip with timeline
 # 26 Sept 21
 ## 1.7
 ### FIXED
