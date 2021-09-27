@@ -269,7 +269,7 @@
           (this.singkawang_related == 2 || this.singkawang_related_potentially == 2) ? 'Singkawang dan Sekitarnya' : null
       },
       findCityName() {
-        let getCityData = this.options.city.find(city => city.id == this.city)
+        let getCityData = this.options.city.find(city => city.value == this.input.city)
         return getCityData.text
       },
       findModeTransport(id) {

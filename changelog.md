@@ -1,4 +1,8 @@
 # 27 Sept 21
+## 1.9
+### FIXED
+- Findcity name function in travel data
+# 27 Sept 21
 ## 1.8
 ### FIXED
 - Kalimantan barat option only if singkawang dan sekitarnya
