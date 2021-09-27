@@ -52,14 +52,14 @@
               Dimana kota domisili anda saat ini?
             </p>
             <b-form-group label="Provinsi">
-              <b-form-select @input="getRegencies($event)" stacked :options="getProvince" v-model="input.domicile_province" button-variant="outline-warning" buttons class="btn-block">
+              <b-form-select @input="getRegencies($event)" stacked :options="getProvinces" v-model="input.domicile_province" button-variant="outline-warning" buttons class="btn-block">
                 <template slot="first">
                   <option :value="null" disabled>-- Pilih Provinsi --</option>
                 </template>
               </b-form-select>
             </b-form-group>
             <b-form-group label="Kota">
-              <b-form-select stacked :options="options.domicile_city" v-model="input.domicile_city" button-variant="outline-warning" buttons class="btn-block">
+              <b-form-select stacked :options="getRegency" v-model="input.domicile_city" button-variant="outline-warning" buttons class="btn-block">
                 <template slot="first">
                   <option :value="null" disabled>-- {{regenciesPlaceholder}} --</option>
                 </template>
@@ -184,11 +184,19 @@
       }
     },
     computed: {
-      getProvince() {
+      getProvinces() {
         if (this.input.is_singkawang_domicile == 1) {
           return this.options.domicile_province.filter(data => data.value == 61)
         }
         return this.options.domicile_province
+      },
+      getRegency() {
+        if (this.input.is_singkawang_domicile == 1) {
+          return this.options.domicile_city.filter(data => {
+            return data.value == 6101 || data.value == 6102 || data.value == 6104 || data.value == 6172
+          })
+        }
+        return this.options.domicile_city
       }
     },
     methods: {

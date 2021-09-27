@@ -1,4 +1,9 @@
 # 27 Sept 21
+## 1.10
+### CHANGE
+- Sequence avg travel cost before multi trip
+- Narrowed options for regencies in kalimantan barat options
+- Edit typography in multi trip
 ## 1.9
 ### FIXED
 - Findcity name function in travel data

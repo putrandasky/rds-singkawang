@@ -55,9 +55,29 @@
         </div>
       </template>
     </card-survey-slider>
-    <b-col v-if="step == 4" col="12">
+    <b-col v-if="step == 4" lg="4" md="6" sm="8">
+      <b-card class="shadow-sm mb-3">
+        <div>
+          <p>
+            Berapakah harga tiket rata-rata per orang per rute yang anda keluarkan untuk melakukan perjalanan di pertanyaan sebelumnya?
+          </p>
+          <vue-slider tooltip="none" v-model="input.avg_trip_cost" :height="6" :min="100000" :max="16000000" :interval="100000" />
+          <div class="text-center">
+            Rp. {{input.avg_trip_cost | currency}}
+          </div>
+        </div>
+      </b-card>
+      <div>
+
+        <b-btn variant="outline-secondary" @click="backStep(3)">
+          <i class="ri-arrow-left-circle-line align-middle"></i> Kembali
+        </b-btn>
+        <b-btn v-if="input.avg_trip_cost != null" variant="primary" class="font-weight-bold float-right" @click="nextStep(5)">Lanjut</b-btn>
+      </div>
+    </b-col>
+    <b-col v-if="step == 5" :col="12">
       <b-row class="justify-content-center">
-        <b-col v-if="step == 4" lg="4" md="6" sm="8">
+        <b-col v-if="step == 5" lg="4" md="6" sm="8">
           <b-card no-body class="shadow-sm w-100 px-0  overflow-hidden">
             <div class="card-body" style="max-height:300px;overflow-y:auto">
               <ul class="timeline">
@@ -79,13 +99,13 @@
             <div class="card-body">
               <small>
                 <em>
-                  nb: Tekan "Lanjut", jika tujuan ke {{input.multi_trip.length }} adalah akhir tujuan anda ({{destination()}})
+                  nb: Tekan "Lanjut", jika pemberhentian ke {{input.multi_trip.length }} adalah akhir tujuan anda ({{destination()}})
                 </em>
               </small>
             </div>
           </b-card>
         </b-col>
-        <b-col v-if="step == 4" lg="4" md="6" sm="8">
+        <b-col v-if="step == 5" lg="4" md="6" sm="8">
           <b-card class="shadow-sm mb-3">
             <div>
               <p class="mb-1">
@@ -94,7 +114,7 @@
               <p class="mb-1">
                 Mohon sebutkan dan detailkan kendaraan apa saja yang anda gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya.
               </p>
-              <small>Contoh: Biasanya sebelum sampai bandara, calon penumpang menggunakan moda transportasi darat terlebih dahulu seperti (bus, mobil, atau motor)</small>
+              <!-- <small>Contoh: Biasanya sebelum sampai bandara, calon penumpang menggunakan moda transportasi darat terlebih dahulu seperti (bus, mobil, atau motor)</small> -->
               <div v-for="(v,i) in input.multi_trip" :key="i" v-show="input.multi_trip.length == (i + 1)">
                 <!-- <div class="text-center mb-2">
               <b v-if="i == 0">
@@ -104,7 +124,7 @@
                 Dari Tujuan ke-{{i}} menuju Tujuan ke-{{i+1}}
               </b>
             </div> -->
-                <b-form-group :label="`Tujuan ke-${i+1}`">
+                <b-form-group :label="`Titik pemberhentian ke-${i+1}`">
 
                   <b-form-input v-model="v.destination" trim placeholder="Bandara Supadio, Pelabuhan Pontianak, Terminal Kp Melayu"></b-form-input>
                 </b-form-group>
@@ -151,8 +171,8 @@
                   <b-button variant="outline-secondary" @click="back(i)">Kembali</b-button>
                   <span v-if="v.destination != '' &&v.transportation_mode_id >0 && v.cost > 0 && v.duration_minutes != null && v.duration_hours != null ">
 
-                    <b-button variant="warning" @click="addTripDetail">Tambah Tujuan</b-button>
-                    <b-button variant="primary" @click="nextStep(5)">Lanjut</b-button>
+                    <b-button variant="warning" @click="addTripDetail">Tambah Pemberhentian</b-button>
+                    <b-button variant="primary" @click="submit">Kirim</b-button>
                   </span>
                 </div>
               </div>
@@ -164,26 +184,6 @@
       </b-row>
     </b-col>
 
-    <b-col v-if="step == 5" lg="4" md="6" sm="8">
-      <b-card class="shadow-sm mb-3">
-        <div>
-          <p>
-            Berapakah harga tiket rata-rata per orang per rute yang anda keluarkan untuk melakukan perjalanan di pertanyaan sebelumnya?
-          </p>
-          <vue-slider tooltip="none" v-model="input.avg_trip_cost" :height="6" :min="100000" :max="16000000" :interval="100000" />
-          <div class="text-center">
-            Rp. {{input.avg_trip_cost | currency}}
-          </div>
-        </div>
-      </b-card>
-      <div>
-
-        <b-btn variant="outline-secondary" @click="backStep(4)">
-          <i class="ri-arrow-left-circle-line align-middle"></i> Kembali
-        </b-btn>
-        <b-btn v-if="input.avg_trip_cost != null" variant="primary" class="font-weight-bold float-right" @click="submit">Kirim</b-btn>
-      </div>
-    </b-col>
   </div>
 </template>
 <script>
