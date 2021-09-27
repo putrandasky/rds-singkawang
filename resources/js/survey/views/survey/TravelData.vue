@@ -15,10 +15,8 @@
         </div>
       </b-card>
       <div>
-
         <b-btn variant="primary" class="font-weight-bold float-right" @click="nextStep(2)" v-if="input.city != null">Lanjut</b-btn>
       </div>
-
     </b-col>
     <b-col v-if="step == 2" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
@@ -130,7 +128,7 @@
                 </b-form-group>
 
                 <b-row>
-                  <b-col cols="12">
+                  <b-col :cols="12">
                     <b-form-group label="Durasi Perjalanan">
 
                       <b-input-group>
@@ -153,40 +151,33 @@
                 </b-row>
                 <b-form-group label="Biaya Perjalanan">
                   <vue-slider v-model="v.cost" :height="6" :tooltip-formatter="currencyTooltipFormatter" :min="0" :max="3000000" :interval="10000" />
-
                 </b-form-group>
                 <b-form-group label="Moda transportasi">
-
                   <b-form-select stacked :options="options.transportation_mode" v-model="v.transportation_mode_id" button-variant="outline-warning" buttons class="btn-block" @change="transportationModeTriggered(i)">
                     <option :value="null" disabled>-- Pilih Moda Transportasi --</option>
-
                   </b-form-select>
                 </b-form-group>
                 <b-form-group v-if="v.transportation_mode_id == 6" label="Tulis moda transportasi lainnya" label-for="transportation_mode_others">
                   <b-form-input id="transportation_mode_others" v-model="v.transportation_mode_others" trim></b-form-input>
                 </b-form-group>
-
                 <div class="text-center">
-
                   <b-button variant="outline-secondary" @click="back(i)">Kembali</b-button>
                   <span v-if="v.destination != '' &&v.transportation_mode_id >0 && v.cost > 0 && v.duration_minutes != null && v.duration_hours != null ">
-
                     <b-button variant="warning" @click="addTripDetail">Tambah Pemberhentian</b-button>
                     <b-button variant="primary" @click="submit">Kirim</b-button>
                   </span>
                 </div>
               </div>
-
             </div>
           </b-card>
-
         </b-col>
       </b-row>
     </b-col>
-
+    <multi-trip-example ref="tripExample" />
   </div>
 </template>
 <script>
+  import MultiTripExample from '../../components/MultiTripExample.vue'
   import CardSurvey from '../../components/CardSurvey.vue'
   import CardSurveySlider from '../../components/CardSurveySlider.vue'
   import {
@@ -202,7 +193,8 @@
     name: 'TravelData',
     components: {
       CardSurvey,
-      CardSurveySlider
+      CardSurveySlider,
+      MultiTripExample
 
 
     },
@@ -248,6 +240,11 @@
     watch: {
       'input.travel_purpose': function(newVal, oldVal) {
         this.input.travel_purpose_other = ''
+      },
+      step(newVal, oldVal) {
+        if (newVal == 5) {
+          this.$refs.tripExample.handleClick(true)
+        }
       }
     },
     computed: {

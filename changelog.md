@@ -1,3 +1,7 @@
+# 29 Sept 21
+## 1.11
+### ADD
+- MODAL INFORMATION multi trip
 # 27 Sept 21
 ## 1.10
 ### CHANGE

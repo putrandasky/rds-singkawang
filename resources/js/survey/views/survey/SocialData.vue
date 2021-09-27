@@ -113,6 +113,7 @@
     MethodsSurvey
   } from '../../mixins/Survey.js'
 
+
   export default {
     name: 'SocialData',
     components: {
