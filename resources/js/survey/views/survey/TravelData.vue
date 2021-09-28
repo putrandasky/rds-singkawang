@@ -82,22 +82,24 @@
 
                 <li v-for="(v,i) in input.multi_trip" :key="i">
                   <div class="tl-icon">{{i}}</div>
-                  <strong v-if="i == 0">Asal : {{origin()}}</strong>
-                  <strong v-if="i !== 0">Pemberhentian ke-{{i}}</strong>
-                  <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
-                  <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
-                  <div>Moda : {{findModeTransport(v.transportation_mode_id)}}</div>
+                  <strong v-if="i == 0">Asal : Rumah</strong>
+                  <strong v-if="i !== 0">Pemberhentian ke-{{i}} : {{getDestination(i-1)}}</strong>
+                  <div class="mt-2">
+                    <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
+                    <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
+                    <div>Moda : {{findModeTransport(v.transportation_mode_id)}}</div>
+                  </div>
                 </li>
                 <li>
                   <div class="tl-icon">{{input.multi_trip.length }}</div>
-                  <strong>Ke : {{destination()}}</strong>
+                  <strong>Tujuan : {{getDestination(input.multi_trip.length-1)}}</strong>
                 </li>
               </ul>
             </div>
             <div class="card-body">
               <small>
                 <em>
-                  nb: Tekan "Lanjut", jika pemberhentian ke {{input.multi_trip.length }} adalah akhir tujuan anda ({{destination()}})
+                  nb: Tekan "Kirim", jika pemberhentian ke {{input.multi_trip.length }} adalah akhir tujuan anda ({{destination()}})
                 </em>
               </small>
             </div>
@@ -235,6 +237,10 @@
       this.getData()
       this.$emit("childinit", this.routerData);
       this.stepProgress.unshift(this.routerData.progress)
+      //   this.$refs.tripExample.handleClick(true)
+    },
+    mounted() {
+      //   this.$refs.tripExample.handleClick(true)
 
     },
     watch: {
@@ -264,6 +270,9 @@
       destination() {
         return (this.singkawang_related == 1 || this.singkawang_related_potentially == 1) ? this.findCityName() :
           (this.singkawang_related == 2 || this.singkawang_related_potentially == 2) ? 'Singkawang dan Sekitarnya' : null
+      },
+      getDestination(i) {
+        return this.input.multi_trip[i].destination
       },
       findCityName() {
         let getCityData = this.options.city.find(city => city.value == this.input.city)

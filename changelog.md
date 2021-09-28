@@ -1,3 +1,7 @@
+# 30 Sept 21
+## 1.12
+### CHANGE
+- Sequence in multi trip
 # 29 Sept 21
 ## 1.11
 ### ADD

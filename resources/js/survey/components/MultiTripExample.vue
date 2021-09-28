@@ -21,18 +21,22 @@
         </div>
       </b-col>
       <b-col lg="6">
+        <b>CONTOH :</b>
         <ul class="timeline">
           <li v-for="(v,i) in multi_trip" :key="i">
             <div class="tl-icon">{{i}}</div>
-            <strong v-if="i == 0">Asal : Jakarta</strong>
-            <strong v-if="i !== 0">Pemberhentian ke-{{i}}</strong>
-            <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
-            <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
-            <div>Moda : {{v.transportation_mode}}</div>
+            <strong v-if="i == 0">Asal : Rumah</strong>
+            <strong v-if="i !== 0">Pemberhentian ke-{{i}} : {{getDestination(i-1)}}</strong>
+            <div class="mt-2">
+
+              <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
+              <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
+              <div>Moda : {{v.transportation_mode}}</div>
+            </div>
           </li>
           <li>
             <div class="tl-icon">{{multi_trip.length }}</div>
-            <strong>Ke : Singkawang </strong>
+            <strong>Tujuan : {{getDestination(multi_trip.length-1)}}</strong>
           </li>
         </ul>
       </b-col>
@@ -83,6 +87,9 @@
       handleAnimation: function(anim) {
         this.anim = anim;
       },
+      getDestination(i) {
+        return this.multi_trip[i].destination
+      }
     },
   }
 </script>
