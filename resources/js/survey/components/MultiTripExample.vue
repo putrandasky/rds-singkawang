@@ -14,7 +14,7 @@
       <b-col lg="6">
         <div class="mt-0 mt-lg-3">
 
-          <p>Pada bagian ini anda diminta untuk mendetailkan perjalanan dari asal sampai dengan tujuan perjalan.</p>
+          <p>Pada bagian ini anda diminta untuk mendetailkan perjalanan dari asal sampai dengan tujuan perjalanan.</p>
           <p>
             Mohon sebutkan dan detailkan kendaraan apa saja yang anda gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya.
           </p>
