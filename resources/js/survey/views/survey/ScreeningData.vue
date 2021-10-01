@@ -2,7 +2,10 @@
   <div class="d-flex justify-content-center py-3">
     <card-survey-slider v-if="step == 1" :step="step" action="Lanjut" :height="6" :min="0" :max="200" :interval="1" :input="input.travel_frequence" @onChange="input.travel_frequence = $event" @onNext="nextStep(2)">
       <template v-slot:question>
-        <b>Sebelum adanya pandemic Covid 19</b>, Dalam satu tahun, berapa kali anda melakukan perjalanan menggunakan pesawat?
+        <b>Sebelum adanya pandemic Covid 19</b>, Dalam satu tahun, berapa kali anda melakukan perjalanan menggunakan pesawat rute domestik?
+        <div>
+          <small>Note: Pulang dan Pergi dihitung 2 kali perjalanan</small>
+        </div>
       </template>
       <template v-slot:info>
         <div v-show="input.travel_frequence != null">
@@ -10,23 +13,25 @@
             Tidak pernah menggunakan pesawat dalam setahun
           </div>
           <div v-else>
-            Menggunakan pesawat {{input.travel_frequence}} kali dalam setahun
+            Menggunakan pesawat {{input.travel_frequence}} kali dalam setahun (Termasuk Pulang dan Pergi)
           </div>
         </div>
       </template>
     </card-survey-slider>
-    <card-survey-slider v-if="step == 2" action="Lanjut" :height="6" :min="0" :max="100" :interval="1" :sliderTooltipFormat="'{value}%'" :input="input.avg_airplane_transportation_cost" @onChange="input.avg_airplane_transportation_cost = $event" @onBack="backStep(1)" @onNext="nextStep(3)">
+    <!-- slider berubah pake slider aja kelipatan 200rb max 10jt -->
+    <card-survey-slider v-if="step == 2" action="Lanjut" :height="6" :min="0" :max="10000000" :interval="200000" :input="input.avg_airplane_transportation_cost" @onChange="input.avg_airplane_transportation_cost = $event" @onBack="backStep(1)" @onNext="nextStep(3)">
       <template v-slot:question>
-        Berapa alokasi rata-rata biaya <b>transportasi udara</b> untuk tiap perjalanan pada pertanyaan sebelumnya?
+        Berapa rata-rata harga <b>tiket pesawat</b> untuk satu kali perjalanan domestik (termasuk transit, jika ada) pada pertanyaan sebelumnya ?
       </template>
       <template v-slot:info>
-        <span v-if="income.max == null">≤</span>
+        <span v-if="input.avg_airplane_transportation_cost != null">Rp. {{input.avg_airplane_transportation_cost|currency}}</span>
+        <!-- <span v-if="income.max == null">≤</span>
         <span v-if="income.min != null"> Rp. {{income.min * input.avg_airplane_transportation_cost/100 | currency}}</span>
 
         <span v-if="income.min != null && income.max != null"> - </span>
         <span v-if="income.min == null">></span>
 
-        <span v-if="income.max != null"> Rp. {{income.max * input.avg_airplane_transportation_cost/100 | currency}}</span>
+        <span v-if="income.max != null"> Rp. {{income.max * input.avg_airplane_transportation_cost/100 | currency}}</span> -->
       </template>
     </card-survey-slider>
 
@@ -116,7 +121,7 @@
         step: 1,
         sliderTooltipFormat: '{value}%',
         stepProgress: [43, 45, 48],
-
+        currencyTooltipFormatter: v => `Rp.${('' + v).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`,
         input: {
           travel_frequence: null,
           avg_airplane_transportation_cost: null,

@@ -14,6 +14,7 @@ class SurveyController extends Controller
         $data['age'] = Models\Age::all();
         $data['job'] = Models\Job::all();
         $data['income'] = Models\Income::all();
+        $data['avg_transportation_cost_to_income'] = Models\AvgTransportationCostToIncome::all();
         $data['vehicle'] = Models\Vehicle::all();
         $data['province'] = Models\Province::all();
         return $data;
@@ -26,7 +27,7 @@ class SurveyController extends Controller
         $respondent->job_id = $request->job;
         $respondent->income_id = $request->income;
         $respondent->vehicle_id = $request->vehicle;
-        $respondent->avg_transportation_cost = $request->avg_transportation_cost;
+        $respondent->avg_transportation_cost_to_income_id = $request->avg_transportation_cost;
         $respondent->is_singkawang_domicile = $request->is_singkawang_domicile;
         $respondent->domicile_city = $request->domicile_city;
         $respondent->domicile_province = $request->domicile_province;

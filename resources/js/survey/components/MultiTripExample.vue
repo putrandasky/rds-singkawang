@@ -14,10 +14,7 @@
       <b-col lg="6">
         <div class="mt-0 mt-lg-3">
 
-          <p>Pada bagian ini anda diminta untuk mendetailkan perjalanan dari asal sampai dengan tujuan perjalanan.</p>
-          <p>
-            Mohon sebutkan dan detailkan kendaraan apa saja yang anda gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya.
-          </p>
+          Mohon detailkan perjalanan anda dari titik asal sampai titik tujuan, beserta kendaraan yang digunakan, biaya dan waktu yang dikeluarkan.
         </div>
       </b-col>
       <b-col lg="6">
@@ -29,9 +26,9 @@
             <strong v-if="i !== 0">Pemberhentian ke-{{i}} : {{getDestination(i-1)}}</strong>
             <div class="mt-2">
 
-              <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
-              <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
               <div>Moda : {{v.transportation_mode}}</div>
+              <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
+              <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
             </div>
           </li>
           <li>

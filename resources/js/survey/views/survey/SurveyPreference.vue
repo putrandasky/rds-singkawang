@@ -6,10 +6,10 @@
           <div>
 
             <p v-if="is_singkawang_domicile == 1">
-              Kalau anda bepergian dari Kota Singkawang dan sekitarnya menuju Kota <b>{{city.description}}</b> dapat menggunakan rute pesawat langsung Singkawang – <b>{{city.airport}}</b>, dengan waktu penerbangan
+              Jika terdapat rute penerbangan langsung dari kota Singkawang menuju Kota anda saat ini, <b>{{city.description}}</b>, menuju Kota Singkawang dan sekitarnya, dengan waktu penerbangan :
             </p>
             <p v-if="is_singkawang_domicile == 0">
-              Kalau anda bepergian dari Kota anda saat ini <b>{{city.description}}</b> menuju kota Singkawang dan sekitarnya dapat menggunakan rute pesawat langsung <b>{{city.airport}}</b> - Singkawang, dengan waktu penerbangan
+              Jika terdapat rute penerbangan langsung dari kota Singkawang menuju Kota anda saat ini, <b>{{city.description}}</b>, dengan waktu penerbangan :
             </p>
             <div class="text-center">
               <p>

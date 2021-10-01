@@ -38,9 +38,14 @@
         <b-btn v-if="input.travel_purpose != null" variant="primary" class="font-weight-bold float-right" @click="nextStep(3)">Lanjut</b-btn>
       </div>
     </b-col>
-    <card-survey-slider v-if="step == 3" :step="step" action="Lanjut" :height="6" :min="0" :max="200" :interval="1" :input="input.travel_city_frequence" @onChange="input.travel_city_frequence = $event" @onBack="backStep(2)" @onNext="nextStep(4)">
+    <card-survey-slider v-if="step == 3" :step="step" action="Lanjut" :height="6" :min="0" :max="100" :interval="1" :input="input.travel_city_frequence" @onChange="input.travel_city_frequence = $event" @onBack="backStep(2)" @onNext="nextStep(4)">
       <template v-slot:question>
-        Dalam satu tahun, berapa kali anda melakukan perjalanan pada pertanyaan sebelumnya?
+        <p v-if="singkawang_related_potentially == 1 || singkawang_related_potentially == 2">
+          Dalam satu tahun, berapa kali anda akan melakukan perjalanan pada pertanyaan sebelumnya?
+        </p>
+        <p v-else>
+          Dalam satu tahun, berapa kali anda melakukan perjalanan pada pertanyaan sebelumnya?
+        </p>
       </template>
       <template v-slot:info>
         <div v-show="input.travel_city_frequence != null">
@@ -56,10 +61,13 @@
     <b-col v-if="step == 4" lg="4" md="6" sm="8">
       <b-card class="shadow-sm mb-3">
         <div>
-          <p>
+          <p v-if="singkawang_related_potentially == 1 || singkawang_related_potentially == 2">
+            Berapakah harga tiket rata-rata per orang per rute yang akan anda keluarkan untuk melakukan perjalanan di pertanyaan sebelumnya?
+          </p>
+          <p v-else>
             Berapakah harga tiket rata-rata per orang per rute yang anda keluarkan untuk melakukan perjalanan di pertanyaan sebelumnya?
           </p>
-          <vue-slider tooltip="none" v-model="input.avg_trip_cost" :height="6" :min="100000" :max="16000000" :interval="100000" />
+          <vue-slider tooltip="none" v-model="input.avg_trip_cost" :height="6" :min="0" :max="10000000" :interval="200000" />
           <div class="text-center">
             Rp. {{input.avg_trip_cost | currency}}
           </div>
@@ -85,9 +93,9 @@
                   <strong v-if="i == 0">Asal : Rumah</strong>
                   <strong v-if="i !== 0">Pemberhentian ke-{{i}} : {{getDestination(i-1)}}</strong>
                   <div class="mt-2">
-                    <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
-                    <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
                     <div>Moda : {{findModeTransport(v.transportation_mode_id)}}</div>
+                    <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
+                    <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
                   </div>
                 </li>
                 <li>
@@ -112,7 +120,7 @@
                 Bagaimana biasanya anda melakukan perjalanan dari <strong>{{origin()}}</strong> ke <strong>{{destination()}}</strong> ?
               </p>
               <p class="mb-1">
-                Mohon sebutkan dan detailkan kendaraan apa saja yang anda gunakan tersebut termasuk biaya perjalanan yang dikeluarkan dan waktu perjalanannya.
+                Mohon detailkan perjalanan anda dari titik asal sampai titik tujuan, beserta kendaraan yang digunakan, biaya dan waktu yang dikeluarkan.
               </p>
               <!-- <small>Contoh: Biasanya sebelum sampai bandara, calon penumpang menggunakan moda transportasi darat terlebih dahulu seperti (bus, mobil, atau motor)</small> -->
               <div v-for="(v,i) in input.multi_trip" :key="i" v-show="input.multi_trip.length == (i + 1)">
@@ -131,6 +139,17 @@
 
                 <b-row>
                   <b-col :cols="12">
+                    <b-form-group label="Moda transportasi">
+                      <b-form-select stacked :options="options.transportation_mode" v-model="v.transportation_mode_id" button-variant="outline-warning" buttons class="btn-block" @change="transportationModeTriggered(i,v.transportation_mode_id)">
+                        <option :value="null" disabled>-- Pilih Moda Transportasi --</option>
+                      </b-form-select>
+                    </b-form-group>
+                    <b-form-group v-if="v.transportation_mode_id == 6" label="Tulis moda transportasi lainnya" label-for="transportation_mode_others">
+                      <b-form-input id="transportation_mode_others" v-model="v.transportation_mode_others" trim></b-form-input>
+                    </b-form-group>
+                    <b-form-group label="Biaya Perjalanan">
+                      <vue-slider :disabled="v.transportation_mode_id == null" v-model="v.cost" :height="6" :tooltip-formatter="currencyTooltipFormatter" :min="0" :max="maxTransportationCost" :interval="10000" />
+                    </b-form-group>
                     <b-form-group label="Durasi Perjalanan">
 
                       <b-input-group>
@@ -151,17 +170,8 @@
                     </b-form-group>
                   </b-col>
                 </b-row>
-                <b-form-group label="Biaya Perjalanan">
-                  <vue-slider v-model="v.cost" :height="6" :tooltip-formatter="currencyTooltipFormatter" :min="0" :max="3000000" :interval="10000" />
-                </b-form-group>
-                <b-form-group label="Moda transportasi">
-                  <b-form-select stacked :options="options.transportation_mode" v-model="v.transportation_mode_id" button-variant="outline-warning" buttons class="btn-block" @change="transportationModeTriggered(i)">
-                    <option :value="null" disabled>-- Pilih Moda Transportasi --</option>
-                  </b-form-select>
-                </b-form-group>
-                <b-form-group v-if="v.transportation_mode_id == 6" label="Tulis moda transportasi lainnya" label-for="transportation_mode_others">
-                  <b-form-input id="transportation_mode_others" v-model="v.transportation_mode_others" trim></b-form-input>
-                </b-form-group>
+
+
                 <div class="text-center">
                   <b-button variant="outline-secondary" @click="back(i)">Kembali</b-button>
                   <span v-if="v.destination != '' &&v.transportation_mode_id >0 && v.cost > 0 && v.duration_minutes != null && v.duration_hours != null ">
@@ -215,7 +225,7 @@
           transportation_mode: []
         },
         stepProgress: [55, 60, 65, 70],
-
+        maxTransportationCost: 0,
         input: {
           city: null,
           travel_purpose: null,
@@ -244,6 +254,7 @@
 
     },
     watch: {
+
       'input.travel_purpose': function(newVal, oldVal) {
         this.input.travel_purpose_other = ''
       },
@@ -343,9 +354,12 @@
           cost: null
         });
       },
-      transportationModeTriggered(i) {
+      transportationModeTriggered(i, id) {
         console.log(this.input.multi_trip[i].transportation_mode_others);
         this.input.multi_trip[i].transportation_mode_others = ''
+        this.input.multi_trip[i].cost = null
+        id == 1 ? this.maxTransportationCost = 10000000 : this.maxTransportationCost = 3000000
+
       },
       getData() {
         // this.isLoading = true;

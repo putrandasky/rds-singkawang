@@ -1,3 +1,14 @@
+# 1 Okt 21
+## 1.13
+### CHANGE
+- Avg Transportation Cost from slider to Dropdown
+- Ordering Question for multi trip
+- Change Description in multi trip
+- Dynamic Question for travel frequence and cost for the city
+- max and interval for all question related to travel cost and Frequence
+- Question in SP
+### ADDED
+- Table for Avg Transportation Cost
 # 30 Sept 21
 ## 1.12
 ### CHANGE
