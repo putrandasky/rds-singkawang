@@ -1,3 +1,7 @@
+# 4 Okt 21
+## 1.14
+### CHANGE
+- Google mymap and legends in screening data survey
 # 1 Okt 21
 ## 1.13
 ### CHANGE

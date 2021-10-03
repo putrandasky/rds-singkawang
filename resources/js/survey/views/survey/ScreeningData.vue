@@ -39,7 +39,24 @@
     <b-col v-if="step == 3" lg="4" md="6" sm="8">
       <b-card no-body class="shadow-sm mb-3">
         <!-- <iframe class="travel-map-mymap p-0" :src="selectedData.src" style="position:relative; top:-55px; border:none;margin-bottom:-60px"></iframe> -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d685971.4485784924!2d109.17237850745909!3d0.8318165792914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1632024069947!5m2!1sid!2sid" class="travel-map-mymap" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div class="overflow-hidden mb-1">
+
+          <iframe src="https://www.google.com/maps/d/u/0/embed?mid=16MsgX7c2ga0M16EHZdfdd4vXpZ5BO-DX" class="travel-map-mymap" style="position:relative; top:-55px; border:none;margin-bottom:-60px" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class=" d-flex flex-wrap justify-content-center ">
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(136,14,79)"></i> Singkawang
+          </small>
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(121,85,72)"></i> Bengkayang
+          </small>
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(2,136,209)"></i> Sambas
+          </small>
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(249,168,37)"></i> Mempawah
+          </small>
+        </div>
         <b-card-body>
           <p>
             <b>Sebelum adanya pandemic Covid 19</b>, pernahkan anda bepergian
@@ -66,7 +83,24 @@
     <b-col v-if="step == 4" lg="4" md="6" sm="8">
       <b-card no-body class="shadow-sm mb-3">
         <!-- <iframe class="travel-map-mymap p-0" :src="selectedData.src" style="position:relative; top:-55px; border:none;margin-bottom:-60px"></iframe> -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d685971.4485784924!2d109.17237850745909!3d0.8318165792914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1632024069947!5m2!1sid!2sid" class="travel-map-mymap" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div class="overflow-hidden mb-1">
+
+          <iframe src="https://www.google.com/maps/d/u/0/embed?mid=16MsgX7c2ga0M16EHZdfdd4vXpZ5BO-DX" class="travel-map-mymap" style="position:relative; top:-55px; border:none;margin-bottom:-60px" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class=" d-flex flex-wrap justify-content-center ">
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(136,14,79)"></i> Singkawang
+          </small>
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(121,85,72)"></i> Bengkayang
+          </small>
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(2,136,209)"></i> Sambas
+          </small>
+          <small class="px-2">
+            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(249,168,37)"></i> Mempawah
+          </small>
+        </div>
         <b-card-body>
           <p>
             Di waktu yang mendatang, akankah anda berpotensi bepergian
