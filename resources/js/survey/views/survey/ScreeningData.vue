@@ -45,16 +45,16 @@
         </div>
         <div class=" d-flex flex-wrap justify-content-center ">
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(136,14,79)"></i> Singkawang
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(136,14,79)"></i> Singkawang
           </small>
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(121,85,72)"></i> Bengkayang
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(121,85,72)"></i> Bengkayang
           </small>
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(2,136,209)"></i> Sambas
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(2,136,209)"></i> Sambas
           </small>
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(249,168,37)"></i> Mempawah
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(249,168,37)"></i> Mempawah
           </small>
         </div>
         <b-card-body>
@@ -89,16 +89,16 @@
         </div>
         <div class=" d-flex flex-wrap justify-content-center ">
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(136,14,79)"></i> Singkawang
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(136,14,79)"></i> Singkawang
           </small>
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(121,85,72)"></i> Bengkayang
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(121,85,72)"></i> Bengkayang
           </small>
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(2,136,209)"></i> Sambas
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(2,136,209)"></i> Sambas
           </small>
           <small class="px-2">
-            <i class="ri-map-pin-fill align-middle ri-2x" style="color:RGB(249,168,37)"></i> Mempawah
+            <i class="ri-map-pin-5-fill align-middle ri-2x" style="color:RGB(249,168,37)"></i> Mempawah
           </small>
         </div>
         <b-card-body>
