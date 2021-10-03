@@ -13,7 +13,7 @@
             Tidak pernah menggunakan pesawat dalam setahun
           </div>
           <div v-else>
-            Menggunakan pesawat {{input.travel_frequence}} kali dalam setahun (Termasuk Pulang dan Pergi)
+            Menggunakan pesawat {{input.travel_frequence}} kali dalam setahun
           </div>
         </div>
       </template>
