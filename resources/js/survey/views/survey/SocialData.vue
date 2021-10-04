@@ -27,7 +27,7 @@
         <b-card class="shadow-sm mb-3">
           <div>
             <p>
-              Berapa persentase rata – rata yang dialokasikan untuk biaya transportasi (tanpa transportasi udara) anda terhadap pendapatan? ​
+              Berapa persentase rata – rata yang dialokasikan untuk biaya transportasi per bulan (tanpa transportasi udara) anda terhadap pendapatan per bulan? ​
             </p>
             <b-form-select :options="options.avg_transportation_cost" v-model="input.avg_transportation_cost" button-variant="outline-warning" buttons class="btn-block">
               <template slot="first">

@@ -21,7 +21,7 @@
     <!-- slider berubah pake slider aja kelipatan 200rb max 10jt -->
     <card-survey-slider v-if="step == 2" action="Lanjut" :height="6" :min="0" :max="10000000" :interval="200000" :input="input.avg_airplane_transportation_cost" @onChange="input.avg_airplane_transportation_cost = $event" @onBack="backStep(1)" @onNext="nextStep(3)">
       <template v-slot:question>
-        Berapa rata-rata harga <b>tiket pesawat</b> untuk satu kali perjalanan domestik (termasuk transit, jika ada) pada pertanyaan sebelumnya ?
+        Berapa rata-rata harga <b>tiket pesawat</b> untuk satu kali perjalanan domestik (termasuk transit, jika ada) pada pertanyaan sebelumnya?
       </template>
       <template v-slot:info>
         <span v-if="input.avg_airplane_transportation_cost != null">Rp. {{input.avg_airplane_transportation_cost|currency}}</span>

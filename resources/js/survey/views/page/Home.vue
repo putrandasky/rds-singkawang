@@ -2,10 +2,10 @@
   <b-container class="mb-3">
     <b-row>
       <b-col lg="6">
-        <p class="text-warning">
+        <p class="text-warning h4">
           <b>Ikutan surveinya dan menangkan hadiah menarik!</b>
         </p>
-        <p class="h4 text-white">
+        <p class="h5 text-white">
           <b>Hai Indonesia!</b>
         </p>
         <div class="text-white">

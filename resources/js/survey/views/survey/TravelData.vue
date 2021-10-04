@@ -93,7 +93,7 @@
                   <strong v-if="i == 0">Asal : Rumah</strong>
                   <strong v-if="i !== 0">Pemberhentian ke-{{i}} : {{getDestination(i-1)}}</strong>
                   <div class="mt-2">
-                    <div>Moda : {{findModeTransport(v.transportation_mode_id)}}</div>
+                    <div>Moda : {{findModeTransport(v.transportation_mode_id)}} <span v-if="v.transportation_mode_id == 6">({{v.transportation_mode_others}})</span> </div>
                     <div>Biaya perjalanan : Rp. {{v.cost | currency}}</div>
                     <div>Waktu perjalanan : <span v-if="v.duration_hours">{{v.duration_hours}} Jam</span> <span v-if="v.duration_minutes">{{v.duration_minutes}} Menit</span> </div>
                   </div>
@@ -107,7 +107,7 @@
             <div class="card-body">
               <small>
                 <em>
-                  nb: Tekan "Kirim", jika pemberhentian ke {{input.multi_trip.length }} adalah akhir tujuan anda ({{destination()}})
+                  nb: Tekan "Kirim", jika pemberhentian ke {{input.multi_trip.length }} adalah tujuan akhir anda ({{destination()}})
                 </em>
               </small>
             </div>
@@ -148,7 +148,7 @@
                       <b-form-input id="transportation_mode_others" v-model="v.transportation_mode_others" trim></b-form-input>
                     </b-form-group>
                     <b-form-group label="Biaya Perjalanan">
-                      <vue-slider :disabled="v.transportation_mode_id == null" v-model="v.cost" :height="6" :tooltip-formatter="currencyTooltipFormatter" :min="0" :max="maxTransportationCost" :interval="10000" />
+                      <vue-slider :disabled="v.transportation_mode_id == null" v-model="v.cost" :height="6" :tooltip-formatter="currencyTooltipFormatter" :min="0" :max="maxTransportationCost" :interval="intervalTransportationCost" />
                     </b-form-group>
                     <b-form-group label="Durasi Perjalanan">
 
@@ -225,7 +225,8 @@
           transportation_mode: []
         },
         stepProgress: [55, 60, 65, 70],
-        maxTransportationCost: 0,
+        maxTransportationCost: 1000000,
+        intervalTransportationCost: 100000,
         input: {
           city: null,
           travel_purpose: null,
@@ -356,9 +357,29 @@
       },
       transportationModeTriggered(i, id) {
         console.log(this.input.multi_trip[i].transportation_mode_others);
+        console.log(id);
         this.input.multi_trip[i].transportation_mode_others = ''
         this.input.multi_trip[i].cost = null
-        id == 1 ? this.maxTransportationCost = 10000000 : this.maxTransportationCost = 3000000
+        if (id == 1) {
+          this.maxTransportationCost = 10000000
+          this.intervalTransportationCost = 200000
+        }
+        if (id == 2) {
+          this.maxTransportationCost = 1000000
+          this.intervalTransportationCost = 10000
+        }
+        if (id == 3) {
+          this.maxTransportationCost = 3000000
+          this.intervalTransportationCost = 50000
+        }
+        if (id == 4 || id == 5) {
+          this.maxTransportationCost = 1000000
+          this.intervalTransportationCost = 10000
+        }
+        if (id == 6) {
+          this.maxTransportationCost = 3000000
+          this.intervalTransportationCost = 50000
+        }
 
       },
       getData() {

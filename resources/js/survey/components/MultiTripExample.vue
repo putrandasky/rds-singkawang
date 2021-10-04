@@ -1,13 +1,14 @@
 <template>
   <b-modal no-close-on-backdrop no-close-on-esc hide-footer hide-header size="lg" hide-header-close centered v-model="modalOpen" body-class="px-5 pb-5 pt-4">
     <div class="w-100 text-center h4">
-
-      <lottie :options="defaultOptions" v-on:animCreated="handleAnimation" :height="80" :width="80" />
-      <div class="mb-3">
-
+      <div>
         <b>
-          Petunjuk Pengisian Detail Perjalanan
+          Detail Perjalanan
         </b>
+      </div>
+
+      <div class="mb-3">
+        <lottie :options="defaultOptions" v-on:animCreated="handleAnimation" :height="40" :width="40" /> Petunjuk Pengisian
       </div>
     </div>
     <b-row>

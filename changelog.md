@@ -1,4 +1,8 @@
 # 4 Okt 21
+## 1.15
+### CHANGE
+- Typography and font
+- Max cost and interval for multi trip cost
 ## 1.14
 ### CHANGE
 - Google mymap and legends in screening data survey
