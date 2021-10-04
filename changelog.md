@@ -1,4 +1,8 @@
 # 4 Okt 21
+## 1.16
+### CHANGE
+- Question on city origin
+- Auth mode on
 ## 1.15
 ### CHANGE
 - Typography and font
