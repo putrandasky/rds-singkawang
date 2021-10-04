@@ -43,7 +43,7 @@
       return {}
     },
     created() {
-      //   this.getNewToken()
+      this.getNewToken()
     },
     methods: {
       getNewToken() {
