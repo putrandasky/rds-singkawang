@@ -31,6 +31,9 @@ Route::get('respondent/survey/personal-data', [SurveyController::class, 'getPers
 Route::get('region/province/{province_id}', [RegionController::class, 'getRegencies']);
 Route::get('dashboard/index', [DashboardController::class, 'index']);
 
+Route::get('/admin/{vue_capture?}', function () {
+    return View::make('app.admin');
+})->where('vue_capture', '[\/\w\.-]*');
 Route::get('/{vue_capture?}', function () {
     return View::make('app.survey');
 })->where('vue_capture', '[\/\w\.-]*');

@@ -10,27 +10,53 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data['respondent_by_city'] = Models\City::withCount('respondents')->get();
-        $data['respondent_by_category'] = Models\Category::withCount('respondents')->get();
+        $data['respondent_destination'] = array();
+        $data['respondent_destination'][0]['description'] = "Dari Singkawang";
+        $data['respondent_destination'][0]['respondent_count'] = Models\Respondent::where([
+            'is_singkawang_domicile' => 1,
+            'step_id' => 5,
+        ])->count();
+        $data['respondent_destination'][1]['description'] = "Ke Singkawang";
+
+        $data['respondent_destination'][1]['respondent_count'] = Models\Respondent::where([
+            'is_singkawang_domicile' => 0,
+            'step_id' => 5,
+        ])->count();
+// $data['respondent_by_city'] = $this->getSingleDataChart(
+        //     App\SpPedestrian::where([
+        //         'question_id' => 1,
+        //         'sp_pedestrian_choice_id' => 1,
+        //     ])->
+        //         join('respondents', 'sp_pedestrians.respondent_id', '=', 'respondents.id')
+        //         ->get(),
+        //     'income',
+        //     App\Income::get()->pluck('description'),
+        //     'income_id',
+        //     App\Income::get()->pluck('id')
+        // );
+
+        $data['respondent_by_city'] = Models\City::withCount(([
+            'respondents' => function ($query) {
+                $query->where('step_id', '=', 5);
+            },
+        ]))->get();
+        $data['respondent_by_category'] = Models\Category::withCount(([
+            'respondents' => function ($query) {
+                $query->where('step_id', '=', 5);
+            },
+        ]))->get();
         $data['respondent_by_city_category'] = $this->getMultiDataChart(
-            Models\Respondent::get(),
-            'Kota',
-            Models\City::get()->pluck('description'),
-            'city_id',
-            Models\City::get()->pluck('id'),
+            Models\Respondent::where('step_id', 5)->get(),
             'Kategori',
             Models\Category::get()->pluck('description'),
             'category_id',
             Models\Category::get()->pluck('id'),
+            'Kota',
+            Models\City::get()->pluck('description'),
+            'city_id',
+            Models\City::get()->pluck('id'),
         );
-        $data['respondent_from_singkawang'] = Models\Respondent::where([
-            'is_singkawang_domicile' => 1,
-            'step_id' => 5,
-        ])->count();
-        $data['respondent_to_singkawang'] = Models\Respondent::where([
-            'is_singkawang_domicile' => 0,
-            'step_id' => 5,
-        ])->count();
+
         for ($i = 6; $i >= 0; $i--) {
             $date = Carbon::createFromTimestamp(Carbon::today()->subDays($i)->timestamp)->toDateString();
             $date2 = Carbon::createFromTimestamp(Carbon::today()->subDays($i)->timestamp)->format('d-M-y');
@@ -42,6 +68,8 @@ class DashboardController extends Controller
         }
         $data['stats_respondent']['total'] = Models\Respondent::count();
         $data['stats_respondent']['valid'] = Models\Respondent::where('step_id', '=', 5)->count();
+        $data['stats_respondent']['target'] = 1100;
+        $data['stats_respondent']['remaining'] = $data['stats_respondent']['target'] - $data['stats_respondent']['valid'];
         $data['age'] = Models\Age::withCount([
             'respondents' => function ($query) {
                 $query->where('step_id', '=', 5);

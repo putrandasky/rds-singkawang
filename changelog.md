@@ -1,3 +1,7 @@
+# 5 Okt 21
+## 1.17
+### ADD
+- DASHBOARD
 # 4 Okt 21
 ## 1.16
 ### CHANGE
