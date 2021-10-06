@@ -1,3 +1,7 @@
+# 6 Okt 21
+## 1.18
+### ADD
+- Target City in Dashboard
 # 5 Okt 21
 ## 1.17
 ### ADD

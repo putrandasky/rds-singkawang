@@ -19,10 +19,8 @@ mix.webpackConfig({
   },
 })
 
-mix
-  .js('resources/js/survey/app.js', 'public/js/survey/app.js').vue()
-  .js('resources/js/admin/app.js', 'public/js/admin/app.js')
-  .vue()
+mix.js('resources/js/survey/app.js', 'public/js/survey/app.js').vue()
+  .js('resources/js/admin/app.js', 'public/js/admin/app.js').vue()
   .sass('resources/sass/app.scss', 'public/css');
 if (mix.inProduction()) {
   mix.version();

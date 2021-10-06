@@ -53,9 +53,11 @@
             <span v-for="(v,i) in demography" :key="i" v-show="isDemography == v.id">{{v.title}}</span> -->
           </h4>
           <b-card-body class="h-100 pt-0 text-right">
-            <b-button-group>
-              <b-button v-for="(v,i) in demography" :key="i" size="sm" :pressed="isDemography == v.id" variant="outline-secondary" @click="handleDemographyCard(v.id)">{{v.title}}</b-button>
-            </b-button-group>
+            <div class="w-100" style="overflow-x:auto">
+              <b-button-group>
+                <b-button v-for="(v,i) in demography" :key="i" size="sm" :pressed="isDemography == v.id" variant="outline-secondary" @click="handleDemographyCard(v.id)">{{v.title}}</b-button>
+              </b-button-group>
+            </div>
             <horizontal-bar v-if="isDemography == 1" :height="300" :labelData="data.gender.map(data => data.description)" :data="data.gender.map(data => data.respondents_count)" label="Total Responden" />
             <horizontal-bar v-if="isDemography == 2" :height="300" :labelData="data.age.map(data => data.description)" :data="data.age.map(data => data.respondents_count)" label="Total Responden" />
             <horizontal-bar v-if="isDemography == 3" :height="300" :labelData="data.job.map(data => data.description)" :data="data.job.map(data => data.respondents_count)" label="Total Responden" />
@@ -87,9 +89,11 @@
                 <div>
                   <span>{{ v.description }}</span>
                 </div>
-                <div class="ml-auto text-right">
+                <div class="ml-auto text-right" style="width:200px">
 
-                  <b-badge variant="primary">{{ v.respondents_count }}</b-badge>
+                  <b-badge variant="secondary" style="width:25px">{{ v.target }}</b-badge>
+                  <b-badge variant="primary" style="width:25px">{{ v.respondents_count }}</b-badge>
+                  <b-badge :variant="v.respondents_count - v.target < 0 ?  'danger':'success'" style="width:25px">{{ v.respondents_count - v.target  }}</b-badge>
                 </div>
               </div>
             </div>
