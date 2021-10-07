@@ -10,4 +10,12 @@ class MultiTrip extends Model
     public $timestamps = false;
 
     use HasFactory;
+    public function transportation_mode()
+    {
+        return $this->belongsTo(TransportationMode::class);
+    }
+    public function respondent()
+    {
+        return $this->belongsTo(Respondent::class);
+    }
 }

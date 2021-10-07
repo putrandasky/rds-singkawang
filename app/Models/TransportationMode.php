@@ -10,4 +10,8 @@ class TransportationMode extends Model
     public $timestamps = false;
 
     use HasFactory;
+    public function multi_trips()
+    {
+        return $this->hasMany(MultiTrip::class);
+    }
 }

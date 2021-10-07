@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Province extends Model
 {
     use HasFactory;
+    public function respondents()
+    {
+        return $this->hasMany(Respondent::class);
+    }
 }

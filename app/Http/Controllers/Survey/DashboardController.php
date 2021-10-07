@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Survey;
 use App\Http\Controllers\Controller;
 use App\Models;
 use Carbon\Carbon;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -100,6 +101,17 @@ class DashboardController extends Controller
                 $query->where('step_id', '=', 5);
             },
         ])->get();
+        $data['respondent_by_domicile_province'] = Models\Respondent::where('step_id', 5)->select('domicile_province', DB::raw('count(domicile_province) as total'))
+            ->groupBy('domicile_province')->orderBy('total', 'DESC')->with('province')
+            ->get();
+        $data['respondent_by_domicile_city'] = Models\Respondent::where('step_id', 5)->select('domicile_city', DB::raw('count(domicile_city) as total'))
+            ->groupBy('domicile_city')->orderBy('total', 'DESC')->with('regency')
+            ->get();
+        $data['respondent_by_transportation_mode'] = Models\MultiTrip::whereHas('respondent', function ($q) {
+            $q->where('step_id', 5);
+        })->select('transportation_mode_id', DB::raw('count(transportation_mode_id) as total'))
+            ->groupBy('transportation_mode_id')->orderBy('total', 'DESC')->with('transportation_mode')
+            ->get();
 
         //respondent by categories and city
         return $data;

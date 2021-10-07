@@ -21,4 +21,13 @@ class Respondent extends Model
     {
         return $this->belongsTo(Income::class);
     }
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'domicile_province');
+    }
+    public function regency()
+    {
+        return $this->belongsTo(Regency::class, 'domicile_city');
+    }
+
 }

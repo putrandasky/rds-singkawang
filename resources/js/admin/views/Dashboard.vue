@@ -107,7 +107,57 @@
 
         </b-card>
       </b-col>
+      <b-col lg="4" class="mb-4">
+        <b-card title="Provinsi Domisili" class="shadow-sm">
+          <b-card-body class="p-0">
+            <div class="list-group-small">
+              <div v-for="(v, i) in data.respondent_by_domicile_province" :key="i" class="d-flex border-bottom px-3">
+                <div>
+                  <span>{{ v.province.name }}</span>
+                </div>
+                <div class="ml-auto text-right" style="width:30px">
 
+                  <b-badge variant="primary" style="width:25px">{{ v.total }}</b-badge>
+                </div>
+              </div>
+            </div>
+          </b-card-body>
+        </b-card>
+      </b-col>
+      <b-col lg="4" class="mb-4">
+        <b-card title="Kota Domisili" class="shadow-sm">
+          <b-card-body class="p-0">
+            <div class="list-group-small">
+              <div v-for="(v, i) in data.respondent_by_domicile_city" :key="i" class="d-flex border-bottom px-3">
+                <div>
+                  <span>{{ v.regency.name }}</span>
+                </div>
+                <div class="ml-auto text-right" style="width:30px">
+
+                  <b-badge variant="primary" style="width:25px">{{ v.total }}</b-badge>
+                </div>
+              </div>
+            </div>
+          </b-card-body>
+        </b-card>
+      </b-col>
+      <b-col lg="4" class="mb-4">
+        <b-card title="Moda Transportasi" class="shadow-sm">
+          <b-card-body class="p-0">
+            <div class="list-group-small">
+              <div v-for="(v, i) in data.respondent_by_transportation_mode" :key="i" class="d-flex border-bottom px-3">
+                <div>
+                  <span>{{ v.transportation_mode.description }}</span>
+                </div>
+                <div class="ml-auto text-right" style="width:30px">
+
+                  <b-badge variant="primary" style="width:25px">{{ v.total }}</b-badge>
+                </div>
+              </div>
+            </div>
+          </b-card-body>
+        </b-card>
+      </b-col>
 
     </b-row>
 

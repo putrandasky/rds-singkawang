@@ -1,3 +1,7 @@
+# 7 Okt 21
+## 1.19
+### ADD
+- Province,city domicile, tranportation mode in Dashboard
 # 6 Okt 21
 ## 1.18
 ### ADD
