@@ -1,4 +1,4 @@
-@extends('layout.survey')
+@extends('layout.admin')
 @section('content')
 <div id="app">
   {{-- <example-component/> --}}

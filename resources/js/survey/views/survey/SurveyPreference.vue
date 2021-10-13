@@ -197,6 +197,7 @@
             this.modalComplete = true;
 
             this.$store.dispatch("isLoading", false);
+            fbq("track", "SubmitApplication");
 
           })
           .catch(error => {

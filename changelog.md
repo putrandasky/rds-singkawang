@@ -1,4 +1,8 @@
 # 7 Okt 21
+## 1.20
+### ADD
+- Facebook Pixel Code
+# 7 Okt 21
 ## 1.19
 ### ADD
 - Province,city domicile, tranportation mode in Dashboard

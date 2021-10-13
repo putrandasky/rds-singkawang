@@ -152,7 +152,7 @@
             self.isSubmitted = true;
             this.inputDataModal = false;
             this.modalComplete = true;
-            // fbq("track", "CompleteRegistration");
+            fbq("track", "CompleteRegistration");
           })
           .catch(error => {
             console.log(error);
